@@ -1,9 +1,12 @@
 package com.boxing.cart.unit;
 
+import java.util.Arrays;
+
 public class Item {
     private int itemAmount;
     private String itemName;
     private double itemUnitPrice;
+    private ItemType itemType;
 
     public int getItemAmount() {
         return itemAmount;
@@ -23,9 +26,23 @@ public class Item {
 
     public void setItemName(String itemName) {
         this.itemName = itemName;
+        setItemType(this.itemName);
     }
 
     public void setItemUnitPrice(double itemUnitPrice) {
         this.itemUnitPrice = itemUnitPrice;
+    }
+
+    public ItemType getItemType() {
+        return itemType;
+    }
+
+    private void setItemType(String itemName) {
+        for (ItemType itemType : ItemType.values()) {
+            if (Arrays.asList(itemType.getItems()).contains(itemName)) {
+                this.itemType = itemType;
+                break;
+            }
+        }
     }
 }

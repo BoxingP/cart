@@ -31,4 +31,10 @@ public class ItemTest {
         item.setItemUnitPrice(1.00);
         assertThat(item.getItemUnitPrice(), is(1.00));
     }
+    
+    @Test
+    public void shouldSetItemNameVegetable_return_itemTypeFood() {
+        item.setItemName("蔬菜");
+        assertThat(item.getItemType(), is(ItemType.FOOD));
+    }
 }
