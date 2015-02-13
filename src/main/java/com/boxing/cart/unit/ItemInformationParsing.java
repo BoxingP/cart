@@ -1,6 +1,6 @@
 package com.boxing.cart.unit;
 
-public class ParseItemInformation {
+public class ItemInformationParsing {
     public Item abstractInformation(String itemInformation) {
         Item item = new Item();
         
