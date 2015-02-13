@@ -14,7 +14,6 @@ public class TotalPriceCalculator {
             totalPrice += itemPriceCalculator.calculate(item);
         }
         
-        DecimalFormat totalPriceFormat = new DecimalFormat("###.##");
-        return totalPriceFormat.format(totalPrice);
+        return new DecimalFormat("###.##").format(totalPrice);
     }
 }
