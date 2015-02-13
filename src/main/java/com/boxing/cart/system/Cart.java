@@ -3,12 +3,14 @@ package com.boxing.cart.system;
 import com.boxing.cart.function.*;
 import com.boxing.cart.unit.Item;
 
+import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 public class Cart {
-    public String showTotalPrice(String input) {
-        String totalPrice = "";
-        
+    public String showTotalPrice(String input) throws ParseException {
+        double totalPrice = 0d;
+
         InputParsing inputParsing = new InputParsing();
         String[] inputInformation = inputParsing.splitString(input);
 
@@ -17,7 +19,11 @@ public class Cart {
 
         TotalPriceCalculator totalPriceCalculator = new TotalPriceCalculator();
         totalPrice += totalPriceCalculator.calculateTotalPrice(itemList);
-        
-        return totalPrice;
+
+        CouponCalculator couponCalculator = new CouponCalculator();
+        totalPrice = couponCalculator.calculateDeal(totalPrice, inputInformation[2]);
+
+        DecimalFormat totalPriceFormat = new DecimalFormat("#.##");
+        return totalPriceFormat.format(totalPrice);
     }
 }

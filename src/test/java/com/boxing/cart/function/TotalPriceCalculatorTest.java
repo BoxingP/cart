@@ -13,12 +13,12 @@ import static org.mockito.Mockito.when;
 
 public class TotalPriceCalculatorTest {
     TotalPriceCalculator totalPriceCalculator;
-    
+
     @Before
     public void initObject() {
         totalPriceCalculator = new TotalPriceCalculator();
     }
-    
+
     @Test
     public void shouldItemList_return_correctTotalPrice() {
         Item mockItemA = mock(Item.class);
@@ -33,6 +33,6 @@ public class TotalPriceCalculatorTest {
         mockItemList.add(mockItemA);
         mockItemList.add(mockItemB);
 
-        assertThat(totalPriceCalculator.calculateTotalPrice(mockItemList), is("43.54"));
+        assertThat(totalPriceCalculator.calculateTotalPrice(mockItemList), is(43.54));
     }
 }
