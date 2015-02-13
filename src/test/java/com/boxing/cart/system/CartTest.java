@@ -16,7 +16,7 @@ public class CartTest {
     
     @Test
     public void shouldInputStringVegetablePaperNapkin_return_43point54() {
-        String input = "\n\n3 * 蔬菜 : 5.98\n8 * 餐巾纸 : 3.20\n\n2014.01.01";
+        String input = "\n\n3 * 蔬菜 : 5.98\n8 * 餐巾纸 : 3.20\n\n2014.01.01\n";
 
         assertThat(cart.showTotalPrice(input), is("43.54"));
     }

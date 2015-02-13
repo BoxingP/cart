@@ -16,12 +16,12 @@ public class InputParsingTest {
     
     @Test
     public void shouldInputString_return_splitByEmptyLine() {
-        String input = "\n\n3 * 蔬菜 : 5.98\n8 * 餐巾纸 : 3.20\n\n2014.01.01";
+        String input = "\n\n3 * 蔬菜 : 5.98\n8 * 餐巾纸 : 3.20\n\n2014.01.01\n";
         String[] inputInformation = inputParsing.splitString(input);
         
         assertThat(inputInformation.length, is(3));
         assertThat(inputInformation[0], is(""));
         assertThat(inputInformation[1], is("3 * 蔬菜 : 5.98\n8 * 餐巾纸 : 3.20"));
-        assertThat(inputInformation[2], is("2014.01.01"));
+        assertThat(inputInformation[2], is("2014.01.01\n"));
     }
 }
