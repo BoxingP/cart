@@ -31,7 +31,7 @@ public class TotalPriceCalculatorTest {
         when(mockItemB.getItemUnitPrice()).thenReturn(3.20);
         when(mockItemB.getItemDiscount()).thenReturn(1d);
 
-        ArrayList<Item> mockItemList = new ArrayList<>();
+        ArrayList<Item> mockItemList = new ArrayList<Item>();
         mockItemList.add(mockItemA);
         mockItemList.add(mockItemB);
 

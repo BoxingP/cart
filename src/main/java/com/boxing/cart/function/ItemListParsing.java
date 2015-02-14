@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class ItemListParsing {
     public ArrayList<Item> abstractItem(String listInformation, Map<ItemType, Map<Calendar, Double>> discountMap, Calendar settlementCalendar) {
-        ArrayList<Item> itemList = new ArrayList<>();
+        ArrayList<Item> itemList = new ArrayList<Item>();
         ItemInformationParsing itemInformationParsing = new ItemInformationParsing();
 
         String[] items = listInformation.split("[\\r\\n]+");

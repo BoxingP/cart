@@ -24,7 +24,7 @@ public class ItemListParsingTest {
     public void shouldStringContains2Items_return_arrayListLengthIs2() throws ParseException {
         String listInformation = "3 * 蔬菜 : 5.98\n8 * 餐巾纸 : 3.20";
 
-        Map<ItemType, Map<Calendar, Double>> discountMap = new HashMap<>();
+        Map<ItemType, Map<Calendar, Double>> discountMap = new HashMap<ItemType, Map<Calendar, Double>>();
 
         Date date13Nov11 = new SimpleDateFormat("yyyy.MM.dd").parse("2013.11.11");
         Calendar calendar13Nov11 = Calendar.getInstance();
@@ -38,7 +38,7 @@ public class ItemListParsingTest {
     public void shouldStringContains1Item_return_arrayListLengthIs1() throws ParseException {
         String listInformation = "3 * 蔬菜 : 5.98";
 
-        Map<ItemType, Map<Calendar, Double>> discountMap = new HashMap<>();
+        Map<ItemType, Map<Calendar, Double>> discountMap = new HashMap<ItemType, Map<Calendar, Double>>();
 
         Date date13Nov11 = new SimpleDateFormat("yyyy.MM.dd").parse("2013.11.11");
         Calendar calendar13Nov11 = Calendar.getInstance();

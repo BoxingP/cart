@@ -15,7 +15,7 @@ public class InputParsing {
     private Calendar settlementCalendar;
 
     public Map<String, Object> abstractInformation(String input) throws ParseException {
-        inputInformation = new HashMap<>();
+        inputInformation = new HashMap<String, Object>();
         String[] information = input.split("\\n\\n");
 
         Map<ItemType, Map<Calendar, Double>> discountMap = new DiscountParsing().abstractDiscount(information[0]);

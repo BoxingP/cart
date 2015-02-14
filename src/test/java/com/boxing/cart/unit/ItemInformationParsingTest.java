@@ -24,8 +24,8 @@ public class ItemInformationParsingTest {
     @Test
     public void shouldString3Vegetable_return_correctItemInformation() throws ParseException {
         String itemInformation = "3 * 蔬菜 : 5.98";
-        Map<ItemType, Map<Calendar, Double>> discountMap = new HashMap<>();
-        Map<Calendar, Double> discountCalendarMap = new HashMap<>();
+        Map<ItemType, Map<Calendar, Double>> discountMap = new HashMap<ItemType, Map<Calendar, Double>>();
+        Map<Calendar, Double> discountCalendarMap = new HashMap<Calendar, Double>();
 
         Date date13Nov11 = new SimpleDateFormat("yyyy.MM.dd").parse("2013.11.11");
         Calendar calendar13Nov11 = Calendar.getInstance();
@@ -42,8 +42,8 @@ public class ItemInformationParsingTest {
     @Test
     public void shouldString3VegetableWithDiscount_return_correctItemInformation() throws ParseException {
         String itemInformation = "3 * 蔬菜 : 5.98";
-        Map<ItemType, Map<Calendar, Double>> discountMap = new HashMap<>();
-        Map<Calendar, Double> discountCalendarMap = new HashMap<>();
+        Map<ItemType, Map<Calendar, Double>> discountMap = new HashMap<ItemType, Map<Calendar, Double>>();
+        Map<Calendar, Double> discountCalendarMap = new HashMap<Calendar, Double>();
         
         Date date13Nov11 = new SimpleDateFormat("yyyy.MM.dd").parse("2013.11.11");
         Calendar calendar13Nov11 = Calendar.getInstance();

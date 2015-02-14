@@ -12,11 +12,11 @@ public class DiscountParsing {
     private Map<Calendar, Double> alcoholDiscountMap;
 
     public DiscountParsing() {
-        this.discountMap = new HashMap<>();
-        this.electronicsDiscountMap=new HashMap<>();
-        this.foodDiscountMap=new HashMap<>();
-        this.dailyNecessitiesDiscountMap=new HashMap<>();
-        this.alcoholDiscountMap=new HashMap<>();
+        this.discountMap = new HashMap<ItemType, Map<Calendar, Double>>();
+        this.electronicsDiscountMap=new HashMap<Calendar, Double>();
+        this.foodDiscountMap=new HashMap<Calendar, Double>();
+        this.dailyNecessitiesDiscountMap=new HashMap<Calendar, Double>();
+        this.alcoholDiscountMap=new HashMap<Calendar, Double>();
 
         discountMap.put(ItemType.ELECTRONICS, electronicsDiscountMap);
         discountMap.put(ItemType.FOOD, foodDiscountMap);
@@ -37,22 +37,23 @@ public class DiscountParsing {
     }
 
     private Map<ItemType, Map<Calendar, Double>> parseDiscount(String discountElement) throws ParseException {
+        if (discountElement.equals("")) return discountMap;
+        
         String[] discountInformation = discountElement.split(" \\| ");
-        switch (discountInformation[2]) {
-            case "电子":
-                discountMap.put(ItemType.ELECTRONICS, storeCalendarDiscount(electronicsDiscountMap, discountInformation));
-                break;
-            case "食品":
-                discountMap.put(ItemType.FOOD, storeCalendarDiscount(foodDiscountMap, discountInformation));
-                break;
-            case "日用品":
-                discountMap.put(ItemType.DAILY_NECESSITIES, storeCalendarDiscount(dailyNecessitiesDiscountMap, discountInformation));
-                break;
-            case "酒类":
-                discountMap.put(ItemType.ALCOHOL, storeCalendarDiscount(alcoholDiscountMap, discountInformation));
-                break;
-            default:
-                break;
+        if (discountInformation.length<3) return discountMap;
+        
+        if (discountInformation[2].equals("电子")) {
+            discountMap.put(ItemType.ELECTRONICS, storeCalendarDiscount(electronicsDiscountMap, discountInformation));
+
+        } else if (discountInformation[2].equals("食品")) {
+            discountMap.put(ItemType.FOOD, storeCalendarDiscount(foodDiscountMap, discountInformation));
+
+        } else if (discountInformation[2].equals("日用品")) {
+            discountMap.put(ItemType.DAILY_NECESSITIES, storeCalendarDiscount(dailyNecessitiesDiscountMap, discountInformation));
+
+        } else if (discountInformation[2].equals("酒类")) {
+            discountMap.put(ItemType.ALCOHOL, storeCalendarDiscount(alcoholDiscountMap, discountInformation));
+
         }
 
         return discountMap;
