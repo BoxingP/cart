@@ -24,7 +24,7 @@ public class CartTest {
     }
 
     @Test
-    public void shouldInputStringVegetablePaperNapkinWithCoupon_return_35point54() throws ParseException {
+    public void shouldInputStringVegetablePaperNapkinWithCoupon_return_38point54() throws ParseException {
         String input = "\n\n3 * 蔬菜 : 5.98\n8 * 餐巾纸 : 3.20\n\n2014.01.01\n2014.3.2 40 5";
 
         assertThat(cart.showTotalPrice(input), is("38.54"));
