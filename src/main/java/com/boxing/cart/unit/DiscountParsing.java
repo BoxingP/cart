@@ -11,7 +11,15 @@ public class DiscountParsing {
     }
 
     public Map<ItemType, String[]> abstractDiscount(String discount) {
-        String[] discountInformation = discount.split(" \\| ");
+        String[] dicountList = discount.split("\\n");
+        for (String discountElement :dicountList) {
+            discountMap = parseDiscount(discountElement);
+        }
+        return discountMap;
+    }
+
+    private Map<ItemType, String[]> parseDiscount(String discountElement) {
+        String[] discountInformation = discountElement.split(" \\| ");
         switch (discountInformation[2]) {
             case "电子":
                 discountMap.put(ItemType.ELECTRONICS, new String[]{discountInformation[0], discountInformation[1]});

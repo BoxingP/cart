@@ -23,4 +23,13 @@ public class DiscountParsingTest {
 
         assertThat(discountMap.get(ItemType.ELECTRONICS), is(new String[]{"2013.11.11", "0.7"}));
     }
+
+    @Test
+    public void shouldDiscountStringContainsSeveral_return_discountMap() {
+        String discount = "2013.11.11 | 0.7 | 电子\n2013.11.11 | 0.5 | 食品";
+        Map<ItemType, String[]> discountMap = discountParsing.abstractDiscount(discount);
+
+        assertThat(discountMap.get(ItemType.ELECTRONICS), is(new String[]{"2013.11.11", "0.7"}));
+        assertThat(discountMap.get(ItemType.FOOD), is(new String[]{"2013.11.11", "0.5"}));
+    }
 }
