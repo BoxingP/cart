@@ -3,7 +3,6 @@ package com.boxing.cart.system;
 import com.boxing.cart.function.*;
 import com.boxing.cart.unit.DiscountParsing;
 import com.boxing.cart.unit.Item;
-import sun.jvm.hotspot.opto.MachSafePointNode;
 
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -37,7 +36,7 @@ public class Cart {
         CouponCalculator couponCalculator = new CouponCalculator();
         totalPrice = couponCalculator.calculateDeal(totalPrice, inputInformation[2]);
 
-        DecimalFormat totalPriceFormat = new DecimalFormat("#.##");
+        DecimalFormat totalPriceFormat = new DecimalFormat("0.00");
         return totalPriceFormat.format(totalPrice);
     }
 }

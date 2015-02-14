@@ -12,7 +12,7 @@ public class TotalPriceCalculator {
             totalPrice += calculate(item);
         }
 
-        DecimalFormat totalPriceFormat = new DecimalFormat("#.##");
+        DecimalFormat totalPriceFormat = new DecimalFormat("0.00");
         totalPrice = Double.valueOf(totalPriceFormat.format(totalPrice));
         return totalPrice;
     }
