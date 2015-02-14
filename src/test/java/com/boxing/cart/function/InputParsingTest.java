@@ -5,10 +5,7 @@ import org.junit.Test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Map;
+import java.util.*;
 
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsInstanceOf.instanceOf;
@@ -28,14 +25,20 @@ public class InputParsingTest {
         String input = "\n\n3 * 蔬菜 : 5.98\n8 * 餐巾纸 : 3.20\n\n2014.01.01\n";
         Map<String, Object> inputInformation = inputParsing.abstractInformation(input);
 
-        Date date14Jan1 = new SimpleDateFormat("yyyy.MM.dd").parse("2014.01.01");
-        Calendar calendar14Jan1 = Calendar.getInstance();
-        calendar14Jan1.setTime(date14Jan1);
-
-        assertThat(inputInformation.size(), is(4));
-        assertThat(inputInformation.get("Discount"), is(nullValue()));
+        assertThat(inputInformation.size(), is(3));
         assertThat(inputInformation.get("Item"), instanceOf(ArrayList.class));
         assertThat(inputInformation.get("Settlement"), instanceOf(Calendar.class));
         assertThat(inputInformation.get("Coupon"), is(nullValue()));
+    }
+
+    @Test
+    public void shouldInputStringWithCouponDiscount_return_splitByEmptyLine() throws ParseException {
+        String input = "2014.01.01 | 0.7 | 食品\n\n3 * 蔬菜 : 5.98\n8 * 餐巾纸 : 3.20\n\n2014.01.01\n2014.3.2 40 5";
+        Map<String, Object> inputInformation = inputParsing.abstractInformation(input);
+
+        assertThat(inputInformation.size(), is(3));
+        assertThat(inputInformation.get("Item"), instanceOf(ArrayList.class));
+        assertThat(inputInformation.get("Settlement"), instanceOf(Calendar.class));
+        assertThat(inputInformation.get("Coupon"), instanceOf(String[].class));
     }
 }

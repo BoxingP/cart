@@ -20,7 +20,6 @@ public class InputParsing {
 
         Map<ItemType, Map<Calendar, Double>> discountMap = new DiscountParsing().abstractDiscount(information[0]);
 
-        inputInformation.put("Discount", discountMap);
         inputInformation.put("Coupon", abstractCoupon(information[2]));
         inputInformation.put("Item", new ItemListParsing().abstractItem(information[1], discountMap, settlementCalendar));
 
