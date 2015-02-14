@@ -37,4 +37,10 @@ public class ItemTest {
         item.setItemName("蔬菜");
         assertThat(item.getItemType(), is(ItemType.FOOD));
     }
+
+    @Test
+    public void shouldSetItemDiscount_return_itemDiscount() {
+        item.setItemDiscount(0.7);
+        assertThat(item.getItemDiscount(), is(0.7));
+    }
 }

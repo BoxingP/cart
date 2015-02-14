@@ -7,6 +7,7 @@ public class Item {
     private String itemName;
     private double itemUnitPrice;
     private ItemType itemType;
+    private double discount;
 
     public int getItemAmount() {
         return itemAmount;
@@ -44,5 +45,13 @@ public class Item {
                 break;
             }
         }
+    }
+
+    public void setItemDiscount(double discount) {
+        this.discount=discount;
+    }
+
+    public double getItemDiscount() {
+        return discount;
     }
 }
