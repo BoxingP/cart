@@ -30,7 +30,7 @@ public class ItemInformationParsing {
     }
 
     private boolean isDiscountValid(Item item, Map<ItemType, Map<Calendar, Double>> discountMap, Calendar settlementCalendar) {
-        return discountMap.get(item.getItemType()) != null && discountMap.get(item.getItemType()).get(settlementCalendar) != null;
+        return discountMap != null && discountMap.get(item.getItemType()) != null && discountMap.get(item.getItemType()).get(settlementCalendar) != null;
     }
 
 }

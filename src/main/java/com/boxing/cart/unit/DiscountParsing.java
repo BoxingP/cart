@@ -26,7 +26,7 @@ public class DiscountParsing {
 
     public Map<ItemType, Map<Calendar, Double>> abstractDiscount(String discount) throws ParseException {
         if (discount.equals("")) {
-            return discountMap;
+            return null;
         }
         
         String[] discountList = discount.split("\\n");

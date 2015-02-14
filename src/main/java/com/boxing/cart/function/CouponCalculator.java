@@ -6,37 +6,25 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class CouponCalculator {
-    public double calculateDeal(double totalPrice, String couponInformation) throws ParseException {
-        String[] coupon = couponInformation.split("\\n");
+    public double calculateDeal(double totalPrice, Calendar settlementCalendar, String[] couponInformation) throws ParseException {
 
-        if (isCouponEmpty(coupon)) return totalPrice;
-
-        String[] couponElements = coupon[1].split(" ");
-        String couponDay = couponElements[0];
-        double totalOverPrice = Double.parseDouble(couponElements[1]);
-        double couponPrice = Double.parseDouble(couponElements[2]);
-
-        if (totalPrice >= totalOverPrice && isCouponValid(coupon[0], couponDay)) {
-            totalPrice -= couponPrice;
+        if (couponInformation != null && isCouponValid(totalPrice, settlementCalendar, couponInformation)) {
+            totalPrice -= Double.parseDouble(couponInformation[2]);
         }
+
         return totalPrice;
     }
 
-    private boolean isCouponValid(String settlementDay, String couponDay) throws ParseException {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
+    private boolean isCouponValid(double totalPrice, Calendar settlementCalendar, String[] couponInformation) throws ParseException {
+        Calendar couponCalendar = abstractCalendar(couponInformation[0]);
+        return (!settlementCalendar.after(couponCalendar)) && (totalPrice >= Double.parseDouble(couponInformation[1]));
+    }
 
-        Date settlementDate = dateFormat.parse(settlementDay);
+    private Calendar abstractCalendar(String input) throws ParseException {
+        Date settlementDate = new SimpleDateFormat("yyyy.MM.dd").parse(input);
         Calendar settlementCalendar = Calendar.getInstance();
         settlementCalendar.setTime(settlementDate);
 
-        Date couponDate = dateFormat.parse(couponDay);
-        Calendar couponCalendar = Calendar.getInstance();
-        couponCalendar.setTime(couponDate);
-
-        return settlementCalendar.before(couponCalendar);
-    }
-
-    private boolean isCouponEmpty(String[] coupon) {
-        return coupon.length == 1;
+        return settlementCalendar;
     }
 }
