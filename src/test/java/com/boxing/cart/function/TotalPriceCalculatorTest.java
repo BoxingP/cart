@@ -24,10 +24,12 @@ public class TotalPriceCalculatorTest {
         Item mockItemA = mock(Item.class);
         when(mockItemA.getItemAmount()).thenReturn(3);
         when(mockItemA.getItemUnitPrice()).thenReturn(5.98);
+        when(mockItemA.getItemDiscount()).thenReturn(1d);
 
         Item mockItemB = mock(Item.class);
         when(mockItemB.getItemAmount()).thenReturn(8);
         when(mockItemB.getItemUnitPrice()).thenReturn(3.20);
+        when(mockItemB.getItemDiscount()).thenReturn(1d);
 
         ArrayList<Item> mockItemList = new ArrayList<>();
         mockItemList.add(mockItemA);

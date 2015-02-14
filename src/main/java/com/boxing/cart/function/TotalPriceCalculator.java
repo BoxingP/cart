@@ -18,6 +18,6 @@ public class TotalPriceCalculator {
     }
 
     private double calculate(Item item) {
-        return item.getItemUnitPrice()*item.getItemAmount();
+        return item.getItemUnitPrice()*item.getItemAmount()*item.getItemDiscount();
     }
 }

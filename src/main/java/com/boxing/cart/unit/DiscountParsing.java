@@ -2,10 +2,7 @@ package com.boxing.cart.unit;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class DiscountParsing {
     private Map<ItemType, Map<Calendar, Double>> discountMap;
@@ -28,6 +25,10 @@ public class DiscountParsing {
     }
 
     public Map<ItemType, Map<Calendar, Double>> abstractDiscount(String discount) throws ParseException {
+        if (discount.equals("")) {
+            return discountMap;
+        }
+        
         String[] discountList = discount.split("\\n");
         for (String discountElement : discountList) {
             discountMap = parseDiscount(discountElement);
