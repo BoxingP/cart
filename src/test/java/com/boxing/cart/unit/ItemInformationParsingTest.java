@@ -15,10 +15,15 @@ import static org.junit.Assert.assertThat;
 
 public class ItemInformationParsingTest {
     ItemInformationParsing itemInformationParsing;
+    Calendar calendar13Nov11;
     
     @Before
-    public void initObject() {
+    public void initObject() throws ParseException {
         itemInformationParsing = new ItemInformationParsing();
+        
+        Date date13Nov11 = new SimpleDateFormat("yyyy.MM.dd").parse("2013.11.11");
+        calendar13Nov11 = Calendar.getInstance();
+        calendar13Nov11.setTime(date13Nov11);
     }
     
     @Test
@@ -26,10 +31,6 @@ public class ItemInformationParsingTest {
         String itemInformation = "3 * 蔬菜 : 5.98";
         Map<ItemType, Map<Calendar, Double>> discountMap = new HashMap<ItemType, Map<Calendar, Double>>();
         Map<Calendar, Double> discountCalendarMap = new HashMap<Calendar, Double>();
-
-        Date date13Nov11 = new SimpleDateFormat("yyyy.MM.dd").parse("2013.11.11");
-        Calendar calendar13Nov11 = Calendar.getInstance();
-        calendar13Nov11.setTime(date13Nov11);
 
         discountCalendarMap.put(calendar13Nov11,1d);
         discountMap.put(ItemType.FOOD, discountCalendarMap);
@@ -44,10 +45,6 @@ public class ItemInformationParsingTest {
         String itemInformation = "3 * 蔬菜 : 5.98";
         Map<ItemType, Map<Calendar, Double>> discountMap = new HashMap<ItemType, Map<Calendar, Double>>();
         Map<Calendar, Double> discountCalendarMap = new HashMap<Calendar, Double>();
-        
-        Date date13Nov11 = new SimpleDateFormat("yyyy.MM.dd").parse("2013.11.11");
-        Calendar calendar13Nov11 = Calendar.getInstance();
-        calendar13Nov11.setTime(date13Nov11);
         
         discountCalendarMap.put(calendar13Nov11,0.7);
         discountMap.put(ItemType.FOOD, discountCalendarMap);

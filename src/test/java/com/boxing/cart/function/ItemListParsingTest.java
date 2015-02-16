@@ -14,10 +14,15 @@ import static org.junit.Assert.assertThat;
 
 public class ItemListParsingTest {
     ItemListParsing itemListParsing;
+    Calendar calendar13Nov11;
 
     @Before
-    public void initObject() {
+    public void initObject() throws ParseException {
         itemListParsing = new ItemListParsing();
+
+        Date date13Nov11 = new SimpleDateFormat("yyyy.MM.dd").parse("2013.11.11");
+        calendar13Nov11 = Calendar.getInstance();
+        calendar13Nov11.setTime(date13Nov11);
     }
 
     @Test
@@ -25,10 +30,6 @@ public class ItemListParsingTest {
         String listInformation = "3 * 蔬菜 : 5.98\n8 * 餐巾纸 : 3.20";
 
         Map<ItemType, Map<Calendar, Double>> discountMap = new HashMap<ItemType, Map<Calendar, Double>>();
-
-        Date date13Nov11 = new SimpleDateFormat("yyyy.MM.dd").parse("2013.11.11");
-        Calendar calendar13Nov11 = Calendar.getInstance();
-        calendar13Nov11.setTime(date13Nov11);
 
         ArrayList<Item> itemList = itemListParsing.abstractItem(listInformation, discountMap, calendar13Nov11);
         assertThat(itemList.size(), is(2));
@@ -39,10 +40,6 @@ public class ItemListParsingTest {
         String listInformation = "3 * 蔬菜 : 5.98";
 
         Map<ItemType, Map<Calendar, Double>> discountMap = new HashMap<ItemType, Map<Calendar, Double>>();
-
-        Date date13Nov11 = new SimpleDateFormat("yyyy.MM.dd").parse("2013.11.11");
-        Calendar calendar13Nov11 = Calendar.getInstance();
-        calendar13Nov11.setTime(date13Nov11);
 
         ArrayList<Item> itemList = itemListParsing.abstractItem(listInformation, discountMap, calendar13Nov11);
         assertThat(itemList.size(), is(1));
