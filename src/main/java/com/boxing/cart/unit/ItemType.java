@@ -7,7 +7,26 @@ public enum ItemType {
     private ItemType(String[] items) {
         this.items = items;
     }
+
     public String[] getItems() {
         return items;
+    }
+
+    public static ItemType abstractItemType(String input) {
+        ItemType discountItemType = null;
+        if (input.equals("电子")) {
+            discountItemType = ELECTRONICS;
+
+        } else if (input.equals("食品")) {
+            discountItemType = FOOD;
+
+        } else if (input.equals("日用品")) {
+            discountItemType = DAILY_NECESSITIES;
+
+        } else if (input.equals("酒类")) {
+            discountItemType = ALCOHOL;
+
+        }
+        return discountItemType;
     }
 }
