@@ -3,7 +3,7 @@ package com.boxing.cart.unit;
 import java.text.ParseException;
 import java.util.Arrays;
 
-public class Item {
+public class Item extends Information<Item> {
     private int itemAmount;
     private String itemName;
     private double itemUnitPrice;
@@ -62,7 +62,8 @@ public class Item {
         this.discount = itemDiscount;
     }
 
-    public static Item abstractInformation(String itemInformation) throws ParseException {
+    @Override
+    public Item abstractInformation(String itemInformation) throws ParseException {
         String[] informationContainsAll = itemInformation.split(" \\* ");
         String[] informationContainsNameUnitPrice = informationContainsAll[1].split(" : ");
 

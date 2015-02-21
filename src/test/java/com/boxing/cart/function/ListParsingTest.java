@@ -33,7 +33,7 @@ public class ListParsingTest {
     @Test
     public void shouldString1Item_return_itemListLength1() throws ParseException {
         String listInformation = "3 * 蔬菜 : 5.98";
-        List<Item> itemList = listParsing.abstractItemList(listInformation);
+        List<Item> itemList = listParsing.abstractList(listInformation, new Item());
 
         Object[] expectItemList = new Object[1];
         expectItemList[0] = new Item(3, "蔬菜", 5.98);
@@ -45,7 +45,7 @@ public class ListParsingTest {
     @Test
     public void shouldString2Items_return_itemListLength2() throws ParseException {
         String listInformation = "3 * 蔬菜 : 5.98\n8 * 餐巾纸 : 3.20";
-        List<Item> itemList = listParsing.abstractItemList(listInformation);
+        List<Item> itemList = listParsing.abstractList(listInformation, new Item());
 
         Object[] expectItemList = new Object[2];
         expectItemList[0] = new Item(3, "蔬菜", 5.98);
@@ -58,7 +58,7 @@ public class ListParsingTest {
     @Test
     public void shouldString1Discount_return_discountListLength1() throws ParseException {
         String listInformation = "2013.11.11 | 0.7 | 食品";
-        List<Discount> discountList = listParsing.abstractDiscountList(listInformation);
+        List<Discount> discountList = listParsing.abstractList(listInformation, new Discount());
 
         Object[] expectDiscountList = new Object[1];
         expectDiscountList[0] = new Discount(calendar13Nov11, 0.7, ItemType.FOOD);
@@ -70,7 +70,7 @@ public class ListParsingTest {
     @Test
     public void shouldString2Discounts_return_discountListLength2() throws ParseException {
         String listInformation = "2013.11.11 | 0.7 | 食品\n2013.11.11 | 0.5 | 电子";
-        List<Discount> discountList = listParsing.abstractDiscountList(listInformation);
+        List<Discount> discountList = listParsing.abstractList(listInformation, new Discount());
 
         Object[] expectDiscountList = new Object[2];
         expectDiscountList[0] = new Discount(calendar13Nov11, 0.7, ItemType.FOOD);
@@ -84,7 +84,7 @@ public class ListParsingTest {
     @Test
     public void shouldString1Coupon_return_couponListLength1() throws ParseException {
         String listInformation = "2013.11.11 1000 200";
-        List<Coupon> couponList = listParsing.abstractCouponList(listInformation);
+        List<Coupon> couponList = listParsing.abstractList(listInformation, new Coupon());
 
         Object[] expectCouponList = new Object[1];
         expectCouponList[0] = new Coupon(calendar13Nov11, 1000d, 200d);
@@ -96,7 +96,7 @@ public class ListParsingTest {
     @Test
     public void shouldString2Coupons_return_couponListLength2() throws ParseException {
         String listInformation = "2013.11.11 1000 200\n2013.11.11 800 100";
-        List<Coupon> couponList = listParsing.abstractCouponList(listInformation);
+        List<Coupon> couponList = listParsing.abstractList(listInformation, new Coupon());
 
         Object[] expectCouponList = new Object[2];
         expectCouponList[0] = new Coupon(calendar13Nov11, 1000d, 200d);

@@ -22,12 +22,12 @@ public class InputInformationConverter {
         
         String[] information = input.split("\\n\\n");
 
-        this.discount = information[0] == null ? null : listParsing.abstractDiscountList(information[0]);
-        this.itemList = listParsing.abstractItemList(information[1]);
-        
+        this.discount = information[0] == null ? null : listParsing.abstractList(information[0], new Discount());
+        this.itemList = listParsing.abstractList(information[1], new Item());
+
         String[] couponInformation = information[2].split("\\n", 2);
         this.settlementCalendar = abstractCalendar(couponInformation[0]);
-        this.coupon = isCouponEmpty(couponInformation) ? null : listParsing.abstractCouponList(couponInformation[1]);
+        this.coupon = isCouponEmpty(couponInformation) ? null : listParsing.abstractList(couponInformation[1], new Coupon());
 
         
     }

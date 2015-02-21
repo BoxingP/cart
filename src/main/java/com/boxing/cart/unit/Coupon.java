@@ -5,11 +5,14 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Coupon {
+public class Coupon extends Information<Coupon> {
     private Calendar couponCalendar;
     private double validTotalPrice;
     private double couponPrice;
 
+    public Coupon() {
+    }
+    
     public Coupon(Calendar couponCalendar, double validTotalPrice, double couponPrice) {
         this.couponCalendar = couponCalendar;
         this.validTotalPrice = validTotalPrice;
@@ -28,7 +31,8 @@ public class Coupon {
         return couponPrice;
     }
 
-    public static Coupon abstractInformation(String input) throws ParseException {
+    @Override
+    public Coupon abstractInformation(String input) throws ParseException {
         String[] couponInformation = input.split(" ");
 
         Calendar couponCalendar = abstractCalendar(couponInformation[0]);
@@ -38,7 +42,7 @@ public class Coupon {
         return new Coupon(couponCalendar, validTotalPrice, couponPrice);
     }
 
-    private static Calendar abstractCalendar(String input) throws ParseException {
+    private Calendar abstractCalendar(String input) throws ParseException {
         Date settlementDate = new SimpleDateFormat("yyyy.MM.dd").parse(input);
         Calendar settlementCalendar = Calendar.getInstance();
         settlementCalendar.setTime(settlementDate);

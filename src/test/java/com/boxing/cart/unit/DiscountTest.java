@@ -15,7 +15,7 @@ public class DiscountTest {
     @Test
     public void shouldStringDiscount_return_DiscountObject() throws ParseException {
         String discountInformation = "2013.11.11 | 0.7 | 电子";
-        Discount discount = Discount.abstractInformation(discountInformation);
+        Discount discount = new Discount().abstractInformation(discountInformation);
 
         Date discountDate = new SimpleDateFormat("yyyy.MM.dd").parse("2013.11.11");
         Calendar discountCalendar = Calendar.getInstance();

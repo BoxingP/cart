@@ -15,7 +15,7 @@ public class CouponTest {
     @Test
     public void shouldStringCoupon_return_CouponObject() throws ParseException {
         String couponInformation = "2014.3.2 1000 200";
-        Coupon coupon = Coupon.abstractInformation(couponInformation);
+        Coupon coupon = new Coupon().abstractInformation(couponInformation);
 
         Date couponDate = new SimpleDateFormat("yyyy.MM.dd").parse("2014.3.2");
         Calendar couponCalendar = Calendar.getInstance();

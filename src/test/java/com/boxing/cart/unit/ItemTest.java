@@ -12,7 +12,7 @@ public class ItemTest {
     @Test
     public void shouldStringVegetable_return_ItemObject() throws ParseException {
         String itemInformation = "3 * 蔬菜 : 5.98";
-        Item item = Item.abstractInformation(itemInformation);
+        Item item = new Item().abstractInformation(itemInformation);
 
         assertThat(item.getItemAmount(), is(3));
         assertThat(item.getItemName(), is("蔬菜"));
