@@ -1,23 +1,23 @@
 package com.boxing.cart.function;
 
-import com.boxing.cart.unit.Item;
+import com.boxing.cart.unit.Calculator;
+import com.boxing.cart.unit.CouponCalculator;
+import com.boxing.cart.unit.DiscountCalculator;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 
 public class TotalPriceCalculator {
-    public double calculateTotalPrice(ArrayList<Item> itemList) {
+    public double calculateTotalPrice(InputInformationConverter inputInformationConverter) {
         double totalPrice = 0d;
-        for (Item item : itemList) {
-            totalPrice += calculate(item);
-        }
+        
+        Calculator discountCalculator = new DiscountCalculator();
+        totalPrice = discountCalculator.calculate(totalPrice, inputInformationConverter);
+        
+        Calculator couponCalculator = new CouponCalculator();
+        totalPrice = couponCalculator.calculate(totalPrice, inputInformationConverter);
 
         DecimalFormat totalPriceFormat = new DecimalFormat("0.00");
-        totalPrice = Double.valueOf(totalPriceFormat.format(totalPrice));
-        return totalPrice;
-    }
-
-    private double calculate(Item item) {
-        return item.getItemUnitPrice()*item.getItemAmount()*item.getItemDiscount();
+        totalPriceFormat.format(totalPrice);
+        return Double.parseDouble(totalPriceFormat.format(totalPrice));
     }
 }

@@ -8,7 +8,6 @@ public class Item extends Information<Item> {
     private String itemName;
     private double itemUnitPrice;
     private ItemType itemType;
-    private double discount;
 
     public Item() {
     }
@@ -18,15 +17,6 @@ public class Item extends Information<Item> {
         this.itemName = itemName;
         this.itemUnitPrice = itemUnitPrice;
         setItemType(this.itemName);
-        this.discount = 1d;
-    }
-
-    public Item(int itemAmount, String itemName, double itemUnitPrice, double discount) {
-        this.itemAmount = itemAmount;
-        this.itemName = itemName;
-        this.itemUnitPrice = itemUnitPrice;
-        setItemType(this.itemName);
-        this.discount = discount;
     }
 
     public int getItemAmount() {
@@ -52,14 +42,6 @@ public class Item extends Information<Item> {
                 break;
             }
         }
-    }
-
-    public double getItemDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(double itemDiscount) {
-        this.discount = itemDiscount;
     }
 
     @Override
