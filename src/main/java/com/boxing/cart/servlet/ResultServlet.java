@@ -14,15 +14,7 @@ import java.text.ParseException;
 public class ResultServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String discountInformation = req.getParameter("discount_information");
-        String itemInformation = req.getParameter("item_information");
-        String couponInformation = req.getParameter("coupon_information");
-
-        discountInformation = discountInformation.replaceAll(",","\n");
-        itemInformation = itemInformation.replaceAll(",","\n");
-        couponInformation = couponInformation.replaceAll(",","\n");
-
-        String inputInformation = discountInformation + "\n\n" + itemInformation + "\n\n" + couponInformation;
+        String inputInformation = formatInputInformation(req);
         String totalPrice;
         
         try {
@@ -37,6 +29,20 @@ public class ResultServlet extends HttpServlet {
         outputStreamWriter.write("<div>The total price is " + totalPrice + ".</div>");
         outputStreamWriter.write("<a href=\"index\">Back</a>");
         outputStreamWriter.flush();
+        outputStreamWriter.close();
+    }
+
+    private String formatInputInformation(HttpServletRequest req) {
+        String discountInformation = req.getParameter("discount_information");
+        String itemInformation = req.getParameter("item_information");
+        String settlementInformation = req.getParameter("settlement_information");
+        String couponInformation = req.getParameter("coupon_information");
+
+        discountInformation = discountInformation.replaceAll(",","\n");
+        itemInformation = itemInformation.replaceAll(",","\n");
+        couponInformation = couponInformation.replaceAll(",","\n");
+
+        return discountInformation + "\n\n" + itemInformation + "\n\n" + settlementInformation + "\n" + couponInformation;
     }
 
     private String calculateTotalPrice(String inputInformation) throws ParseException {

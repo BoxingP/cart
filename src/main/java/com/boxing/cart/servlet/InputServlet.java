@@ -17,9 +17,11 @@ public class InputServlet extends HttpServlet {
         outputStreamWriter.write("<form action=\"result\">");
         outputStreamWriter.write("<p>Input discount information: <input name=\"discount_information\" /></p>");
         outputStreamWriter.write("<p>Input item information: <input name=\"item_information\" /></p>");
+        outputStreamWriter.write("<p>Input settlement day: <input name=\"settlement_information\" /></p>");
         outputStreamWriter.write("<p>Input coupon information: <input name=\"coupon_information\" /></p>");
         outputStreamWriter.write("<p><input type=\"submit\"/></p>");
         outputStreamWriter.write("</form>");
         outputStreamWriter.flush();
+        outputStreamWriter.close();
     }
 }
