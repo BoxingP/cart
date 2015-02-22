@@ -19,7 +19,7 @@ public class InputInformationConverter {
 
     private void abstractInformation(String input) throws ParseException {
         ListParsing listParsing = new ListParsing();
-        
+
         String[] information = input.split("\\n\\n");
 
         this.discount = information[0] == null ? null : listParsing.abstractList(information[0], new Discount());

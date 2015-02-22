@@ -23,3 +23,13 @@ jacocoTestReport {
         html.destination "${buildDir}/jacocoHtml"
     }
 }
+
+task cart(type: JavaExec) {
+    String input = ""
+    if (project.hasProperty("args")) {
+        input = project.getProperty("args")
+    }
+    main = "com.boxing.cart.system.Cart"
+    args = [input]
+    classpath sourceSets.main.runtimeClasspath
+}
