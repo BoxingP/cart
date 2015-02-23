@@ -1,39 +1,16 @@
 package com.boxing.cart.unit;
 
-import com.boxing.cart.function.InputInformationConverter;
+import com.boxing.cart.function.InputInformation;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class CouponCalculator extends Calculator {
-//    public double calculateDeal(double totalPrice, Calendar settlementCalendar, String[] couponInformation) throws ParseException {
-//
-//        if (couponInformation != null && isCouponValid(totalPrice, settlementCalendar, couponInformation)) {
-//            totalPrice -= Double.parseDouble(couponInformation[2]);
-//        }
-//
-//        return totalPrice;
-//    }
-//
-//    private boolean isCouponValid(double totalPrice, Calendar settlementCalendar, String[] couponInformation) throws ParseException {
-//        Calendar couponCalendar = abstractCalendar(couponInformation[0]);
-//        return (!settlementCalendar.after(couponCalendar)) && (totalPrice >= Double.parseDouble(couponInformation[1]));
-//    }
-//
-//    private Calendar abstractCalendar(String input) throws ParseException {
-//        Date settlementDate = new SimpleDateFormat("yyyy.MM.dd").parse(input);
-//        Calendar settlementCalendar = Calendar.getInstance();
-//        settlementCalendar.setTime(settlementDate);
-//
-//        return settlementCalendar;
-//    }
 
     @Override
-    public double calculate(double totalPrice, InputInformationConverter inputInformationConverter) {
+    public double calculate(double totalPrice, InputInformation inputInformation) {
 
-        List<Coupon> couponList = inputInformationConverter.getCoupon();
-        Calendar settlementCalendar = inputInformationConverter.getSettlementCalendar();
+        List<Coupon> couponList = inputInformation.getCouponList();
+        Calendar settlementCalendar = inputInformation.getSettlementCalendar();
 
         if (couponList != null) {
             totalPrice = subtractCouponPrice(totalPrice, couponList, settlementCalendar);

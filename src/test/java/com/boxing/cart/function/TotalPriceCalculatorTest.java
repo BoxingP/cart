@@ -29,7 +29,7 @@ public class TotalPriceCalculatorTest {
 
     @Test
     public void shouldInputInformationConverter_return_correctTotalPrice() throws ParseException {
-        InputInformationConverter mockInputInformationConverter = mock(InputInformationConverter.class);
+        InputInformation mockInputInformation = mock(InputInformation.class);
 
         List<Item> mockItemList = new ArrayList<Item>();
         mockItemList.add(new Item(3, "蔬菜", 5.98));
@@ -46,11 +46,11 @@ public class TotalPriceCalculatorTest {
         List<Coupon> mockCouponList = new ArrayList<Coupon>();
         mockCouponList.add(new Coupon(mockSettlementCalendar, 40d, 5d));
 
-        when(mockInputInformationConverter.getDiscount()).thenReturn(mockDiscountList);
-        when(mockInputInformationConverter.getItemList()).thenReturn(mockItemList);
-        when(mockInputInformationConverter.getSettlementCalendar()).thenReturn(mockSettlementCalendar);
-        when(mockInputInformationConverter.getCoupon()).thenReturn(mockCouponList);
+        when(mockInputInformation.getDiscountList()).thenReturn(mockDiscountList);
+        when(mockInputInformation.getItemList()).thenReturn(mockItemList);
+        when(mockInputInformation.getSettlementCalendar()).thenReturn(mockSettlementCalendar);
+        when(mockInputInformation.getCouponList()).thenReturn(mockCouponList);
 
-        assertThat(totalPriceCalculator.calculateTotalPrice(mockInputInformationConverter), is(38.16));
+        assertThat(totalPriceCalculator.calculateTotalPrice(mockInputInformation), is(38.16));
     }
 }

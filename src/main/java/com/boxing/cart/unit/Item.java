@@ -1,16 +1,12 @@
 package com.boxing.cart.unit;
 
-import java.text.ParseException;
 import java.util.Arrays;
 
-public class Item extends Information<Item> {
+public class Item extends Information {
     private int itemAmount;
     private String itemName;
     private double itemUnitPrice;
     private ItemType itemType;
-
-    public Item() {
-    }
 
     public Item(int itemAmount, String itemName, double itemUnitPrice) {
         this.itemAmount = itemAmount;
@@ -42,18 +38,6 @@ public class Item extends Information<Item> {
                 break;
             }
         }
-    }
-
-    @Override
-    public Item abstractInformation(String itemInformation) throws ParseException {
-        String[] informationContainsAll = itemInformation.split(" \\* ");
-        String[] informationContainsNameUnitPrice = informationContainsAll[1].split(" : ");
-
-        int itemAmount = Integer.parseInt(informationContainsAll[0]);
-        String itemName = informationContainsNameUnitPrice[0];
-        double itemUnitPrice = Double.parseDouble(informationContainsNameUnitPrice[1]);
-
-        return new Item(itemAmount, itemName, itemUnitPrice);
     }
 
     @Override

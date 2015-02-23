@@ -1,6 +1,6 @@
 package com.boxing.cart.unit;
 
-import com.boxing.cart.function.InputInformationConverter;
+import com.boxing.cart.function.InputInformation;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,7 +20,7 @@ public class CouponCalculatorTest {
     CouponCalculator couponCalculator;
     Calendar calendar14Mar1;
     Calendar calendar14Mar2;
-    InputInformationConverter mockInputInformationConverter;
+    InputInformation mockInputInformation;
     
     @Before
     public void initObject() throws ParseException {
@@ -34,7 +34,7 @@ public class CouponCalculatorTest {
         calendar14Mar2 = Calendar.getInstance();
         calendar14Mar2.setTime(date14Mar2);
 
-        mockInputInformationConverter = mock(InputInformationConverter.class);
+        mockInputInformation = mock(InputInformation.class);
     }
     
     @Test
@@ -42,19 +42,19 @@ public class CouponCalculatorTest {
         List<Coupon> mockCouponList = new ArrayList<Coupon>();
         mockCouponList.add(new Coupon(calendar14Mar2, 1000d, 200d));
         
-        when(mockInputInformationConverter.getSettlementCalendar()).thenReturn(calendar14Mar2);
-        when(mockInputInformationConverter.getCoupon()).thenReturn(mockCouponList);
+        when(mockInputInformation.getSettlementCalendar()).thenReturn(calendar14Mar2);
+        when(mockInputInformation.getCouponList()).thenReturn(mockCouponList);
         
-        assertThat(couponCalculator.calculate(1000, mockInputInformationConverter), is(800.d));
+        assertThat(couponCalculator.calculate(1000, mockInputInformation), is(800.d));
     }
 
     @Test
     public void shouldTotalPrice1000CouponEmpty_return_1000() throws ParseException {
 
-        when(mockInputInformationConverter.getSettlementCalendar()).thenReturn(calendar14Mar2);
-        when(mockInputInformationConverter.getCoupon()).thenReturn(null);
+        when(mockInputInformation.getSettlementCalendar()).thenReturn(calendar14Mar2);
+        when(mockInputInformation.getCouponList()).thenReturn(null);
 
-        assertThat(couponCalculator.calculate(1000, mockInputInformationConverter), is(1000.d));
+        assertThat(couponCalculator.calculate(1000, mockInputInformation), is(1000.d));
     }
 
     @Test
@@ -62,10 +62,10 @@ public class CouponCalculatorTest {
         List<Coupon> mockCouponList = new ArrayList<Coupon>();
         mockCouponList.add(new Coupon(calendar14Mar1, 1000d, 200d));
 
-        when(mockInputInformationConverter.getSettlementCalendar()).thenReturn(calendar14Mar2);
-        when(mockInputInformationConverter.getCoupon()).thenReturn(mockCouponList);
+        when(mockInputInformation.getSettlementCalendar()).thenReturn(calendar14Mar2);
+        when(mockInputInformation.getCouponList()).thenReturn(mockCouponList);
 
-        assertThat(couponCalculator.calculate(1000, mockInputInformationConverter), is(1000.d));
+        assertThat(couponCalculator.calculate(1000, mockInputInformation), is(1000.d));
     }
 
     @Test
@@ -73,9 +73,9 @@ public class CouponCalculatorTest {
         List<Coupon> mockCouponList = new ArrayList<Coupon>();
         mockCouponList.add(new Coupon(calendar14Mar2, 1000d, 200d));
 
-        when(mockInputInformationConverter.getSettlementCalendar()).thenReturn(calendar14Mar2);
-        when(mockInputInformationConverter.getCoupon()).thenReturn(mockCouponList);
+        when(mockInputInformation.getSettlementCalendar()).thenReturn(calendar14Mar2);
+        when(mockInputInformation.getCouponList()).thenReturn(mockCouponList);
 
-        assertThat(couponCalculator.calculate(900, mockInputInformationConverter), is(900.d));
+        assertThat(couponCalculator.calculate(900, mockInputInformation), is(900.d));
     }
 }

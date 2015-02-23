@@ -1,18 +1,12 @@
 package com.boxing.cart.unit;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
-public class Discount extends Information<Discount> {
+public class Discount extends Information {
 
     private Calendar discountCalendar;
     private double discountRate;
     private ItemType discountItemType;
-
-    public Discount() {
-    }
 
     public Discount(Calendar discountCalendar, double discountRate, ItemType itemType) {
         this.discountCalendar = discountCalendar;
@@ -30,32 +24,6 @@ public class Discount extends Information<Discount> {
 
     public ItemType getDiscountItemType() {
         return discountItemType;
-    }
-
-    @Override
-    public Discount abstractInformation(String discountInformation) throws ParseException {
-        if (discountInformation.equals("")) return null;
-
-        String[] discountInformationElements = discountInformation.split(" \\| ");
-        if (discountInformationElements.length < 3) return null;
-
-        Calendar discountCalendar = abstractDiscountCalendar(discountInformationElements[0]);
-        double discountRate = abstractDiscountRate(discountInformationElements[1]);
-        ItemType discountItemType = ItemType.abstractItemType(discountInformationElements[2]);
-
-        return new Discount(discountCalendar, discountRate, discountItemType);
-    }
-
-    private Calendar abstractDiscountCalendar(String discountInformation) throws ParseException {
-        Date date = new SimpleDateFormat("yyyy.MM.dd").parse(discountInformation);
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-
-        return calendar;
-    }
-
-    private static double abstractDiscountRate(String input) {
-        return Double.parseDouble(input);
     }
 
     @Override

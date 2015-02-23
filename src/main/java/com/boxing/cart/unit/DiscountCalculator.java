@@ -1,6 +1,6 @@
 package com.boxing.cart.unit;
 
-import com.boxing.cart.function.InputInformationConverter;
+import com.boxing.cart.function.InputInformation;
 
 import java.text.DecimalFormat;
 import java.util.Calendar;
@@ -11,11 +11,11 @@ import java.util.Map;
 public class DiscountCalculator extends Calculator {
 
     @Override
-    public double calculate(double totalPrice, InputInformationConverter inputInformationConverter) {
+    public double calculate(double totalPrice, InputInformation inputInformation) {
 
-        List<Discount> discountList = inputInformationConverter.getDiscount();
-        List<Item> itemList = inputInformationConverter.getItemList();
-        Calendar settlementCalendar = inputInformationConverter.getSettlementCalendar();
+        List<Discount> discountList = inputInformation.getDiscountList();
+        List<Item> itemList = inputInformation.getItemList();
+        Calendar settlementCalendar = inputInformation.getSettlementCalendar();
 
         Map<ItemType, Double> discountMap = new HashMap<ItemType, Double>();
 

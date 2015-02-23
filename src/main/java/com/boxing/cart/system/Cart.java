@@ -1,6 +1,6 @@
 package com.boxing.cart.system;
 
-import com.boxing.cart.function.InputInformationConverter;
+import com.boxing.cart.function.InputInformation;
 import com.boxing.cart.function.TotalPriceCalculator;
 
 import java.text.DecimalFormat;
@@ -9,12 +9,12 @@ import java.text.ParseException;
 public class Cart {
 
     public static void main(String[] args) throws ParseException {
-        String inputInformation = args[0];
-        inputInformation=inputInformation.replaceAll("\\\\n", "\n");
-        System.out.println(inputInformation);
+        String inputString = args[0];
+        inputString=inputString.replaceAll("\\\\n", "\n");
+        System.out.println(inputString);
         
         Cart cart = new Cart();
-        String totalPrice = cart.showTotalPrice(inputInformation);
+        String totalPrice = cart.showTotalPrice(inputString);
 
         System.out.println("Total Price: " + totalPrice);
     }
@@ -27,10 +27,10 @@ public class Cart {
             return totalPriceFormat.format(totalPrice);
         }
         
-        InputInformationConverter inputInformationConverter = new InputInformationConverter(input);
+        InputInformation inputInformation = InputInformation.convertStringToInputInformation(input);
 
         TotalPriceCalculator totalPriceCalculator = new TotalPriceCalculator();
-        totalPrice += totalPriceCalculator.calculateTotalPrice(inputInformationConverter);
+        totalPrice += totalPriceCalculator.calculateTotalPrice(inputInformation);
 
         DecimalFormat totalPriceFormat = new DecimalFormat("0.00");
         return totalPriceFormat.format(totalPrice);

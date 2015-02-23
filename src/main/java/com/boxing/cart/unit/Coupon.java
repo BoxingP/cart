@@ -1,18 +1,12 @@
 package com.boxing.cart.unit;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
-public class Coupon extends Information<Coupon> {
+public class Coupon extends Information {
     private Calendar couponCalendar;
     private double validTotalPrice;
     private double couponPrice;
 
-    public Coupon() {
-    }
-    
     public Coupon(Calendar couponCalendar, double validTotalPrice, double couponPrice) {
         this.couponCalendar = couponCalendar;
         this.validTotalPrice = validTotalPrice;
@@ -29,25 +23,6 @@ public class Coupon extends Information<Coupon> {
 
     public double getCouponPrice() {
         return couponPrice;
-    }
-
-    @Override
-    public Coupon abstractInformation(String input) throws ParseException {
-        String[] couponInformation = input.split(" ");
-
-        Calendar couponCalendar = abstractCalendar(couponInformation[0]);
-        double validTotalPrice = Double.parseDouble(couponInformation[1]);
-        double couponPrice = Double.parseDouble(couponInformation[2]);
-
-        return new Coupon(couponCalendar, validTotalPrice, couponPrice);
-    }
-
-    private Calendar abstractCalendar(String input) throws ParseException {
-        Date settlementDate = new SimpleDateFormat("yyyy.MM.dd").parse(input);
-        Calendar settlementCalendar = Calendar.getInstance();
-        settlementCalendar.setTime(settlementDate);
-
-        return settlementCalendar;
     }
 
     @Override

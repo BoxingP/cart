@@ -1,6 +1,6 @@
 package com.boxing.cart.unit;
 
-import com.boxing.cart.function.InputInformationConverter;
+import com.boxing.cart.function.InputInformation;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,7 +21,7 @@ public class DiscountCalculatorTest {
     DiscountCalculator discountCalculator;
     Calendar calendar14Jan1;
     Calendar calendar14Jan2;
-    InputInformationConverter mockInputInformationConverter;
+    InputInformation mockInputInformation;
     
     @Before
     public void initObject() throws ParseException {
@@ -35,7 +35,7 @@ public class DiscountCalculatorTest {
         calendar14Jan2 = Calendar.getInstance();
         calendar14Jan2.setTime(date14Jan2);
         
-        mockInputInformationConverter = mock(InputInformationConverter.class);
+        mockInputInformation = mock(InputInformation.class);
     }
 
     @Test
@@ -46,11 +46,11 @@ public class DiscountCalculatorTest {
         List<Discount> mockDiscountList = new ArrayList<Discount>();
         mockDiscountList.add(new Discount(calendar14Jan1, 0.7, ItemType.FOOD));
 
-        when(mockInputInformationConverter.getDiscount()).thenReturn(mockDiscountList);
-        when(mockInputInformationConverter.getItemList()).thenReturn(mockItemList);
-        when(mockInputInformationConverter.getSettlementCalendar()).thenReturn(calendar14Jan1);
+        when(mockInputInformation.getDiscountList()).thenReturn(mockDiscountList);
+        when(mockInputInformation.getItemList()).thenReturn(mockItemList);
+        when(mockInputInformation.getSettlementCalendar()).thenReturn(calendar14Jan1);
 
-        assertThat(discountCalculator.calculate(0d, mockInputInformationConverter), is(12.56));
+        assertThat(discountCalculator.calculate(0d, mockInputInformation), is(12.56));
     }
 
     @Test
@@ -58,11 +58,11 @@ public class DiscountCalculatorTest {
         List<Item> mockItemList = new ArrayList<Item>();
         mockItemList.add(new Item(3, "蔬菜", 5.98));
 
-        when(mockInputInformationConverter.getDiscount()).thenReturn(null);
-        when(mockInputInformationConverter.getItemList()).thenReturn(mockItemList);
-        when(mockInputInformationConverter.getSettlementCalendar()).thenReturn(calendar14Jan1);
+        when(mockInputInformation.getDiscountList()).thenReturn(null);
+        when(mockInputInformation.getItemList()).thenReturn(mockItemList);
+        when(mockInputInformation.getSettlementCalendar()).thenReturn(calendar14Jan1);
 
-        assertThat(discountCalculator.calculate(0d, mockInputInformationConverter), is(17.94));
+        assertThat(discountCalculator.calculate(0d, mockInputInformation), is(17.94));
     }
 
     @Test
@@ -73,11 +73,11 @@ public class DiscountCalculatorTest {
         List<Discount> mockDiscountList = new ArrayList<Discount>();
         mockDiscountList.add(new Discount(calendar14Jan2, 0.7, ItemType.FOOD));
 
-        when(mockInputInformationConverter.getDiscount()).thenReturn(mockDiscountList);
-        when(mockInputInformationConverter.getItemList()).thenReturn(mockItemList);
-        when(mockInputInformationConverter.getSettlementCalendar()).thenReturn(calendar14Jan1);
+        when(mockInputInformation.getDiscountList()).thenReturn(mockDiscountList);
+        when(mockInputInformation.getItemList()).thenReturn(mockItemList);
+        when(mockInputInformation.getSettlementCalendar()).thenReturn(calendar14Jan1);
 
-        assertThat(discountCalculator.calculate(0d, mockInputInformationConverter), is(17.94));
+        assertThat(discountCalculator.calculate(0d, mockInputInformation), is(17.94));
     }
 
     @Test
@@ -88,11 +88,11 @@ public class DiscountCalculatorTest {
         List<Discount> mockDiscountList = new ArrayList<Discount>();
         mockDiscountList.add(new Discount(calendar14Jan1, 0.7, ItemType.ELECTRONICS));
 
-        when(mockInputInformationConverter.getDiscount()).thenReturn(mockDiscountList);
-        when(mockInputInformationConverter.getItemList()).thenReturn(mockItemList);
-        when(mockInputInformationConverter.getSettlementCalendar()).thenReturn(calendar14Jan1);
+        when(mockInputInformation.getDiscountList()).thenReturn(mockDiscountList);
+        when(mockInputInformation.getItemList()).thenReturn(mockItemList);
+        when(mockInputInformation.getSettlementCalendar()).thenReturn(calendar14Jan1);
 
-        assertThat(discountCalculator.calculate(0d, mockInputInformationConverter), is(17.94));
+        assertThat(discountCalculator.calculate(0d, mockInputInformation), is(17.94));
     }
 
     @Test
@@ -104,10 +104,10 @@ public class DiscountCalculatorTest {
         List<Discount> mockDiscountList = new ArrayList<Discount>();
         mockDiscountList.add(new Discount(calendar14Jan1, 0.7, ItemType.FOOD));
 
-        when(mockInputInformationConverter.getDiscount()).thenReturn(mockDiscountList);
-        when(mockInputInformationConverter.getItemList()).thenReturn(mockItemList);
-        when(mockInputInformationConverter.getSettlementCalendar()).thenReturn(calendar14Jan1);
+        when(mockInputInformation.getDiscountList()).thenReturn(mockDiscountList);
+        when(mockInputInformation.getItemList()).thenReturn(mockItemList);
+        when(mockInputInformation.getSettlementCalendar()).thenReturn(calendar14Jan1);
 
-        assertThat(discountCalculator.calculate(0d, mockInputInformationConverter), is(38.16));
+        assertThat(discountCalculator.calculate(0d, mockInputInformation), is(38.16));
     }
 }

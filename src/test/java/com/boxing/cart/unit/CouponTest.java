@@ -14,16 +14,14 @@ public class CouponTest {
 
     @Test
     public void shouldStringCoupon_return_CouponObject() throws ParseException {
-        String couponInformation = "2014.3.2 1000 200";
-        Coupon coupon = new Coupon().abstractInformation(couponInformation);
+        Date date2014Mar2 = new SimpleDateFormat("yyyy.MM.dd").parse("2014.3.2");
+        Calendar calendar2014Mar2 = Calendar.getInstance();
+        calendar2014Mar2.setTime(date2014Mar2);
+        
+        Coupon coupon = new Coupon(calendar2014Mar2, 1000d, 200d);
 
-        Date couponDate = new SimpleDateFormat("yyyy.MM.dd").parse("2014.3.2");
-        Calendar couponCalendar = Calendar.getInstance();
-        couponCalendar.setTime(couponDate);
-
-        assertThat(coupon.getCouponCalendar(), is(couponCalendar));
+        assertThat(coupon.getCouponCalendar(), is(calendar2014Mar2));
         assertThat(coupon.getValidTotalPrice(), is(1000d));
         assertThat(coupon.getCouponPrice(), is(200d));
     }
-
 }
