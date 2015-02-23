@@ -3,6 +3,8 @@ package com.boxing.cart.system;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.text.ParseException;
 
 import static org.hamcrest.core.Is.is;
@@ -49,5 +51,35 @@ public class CartTest {
         String input = "2013.11.11 | 0.7 | 电子\n\n1 * ipad : 2399.00\n1 * 显示器 : 1799.00\n12 * 啤酒 : 25.00\n5 * 面 包 : 9.00\n\n2013.11.11\n2014.3.2 1000 200";
 
         assertThat(cart.showTotalPrice(input), is("3083.60"));
+    }
+
+    @Test
+    public void shouldInputEmpty_return_0point00() throws ParseException {
+        String input = "";
+
+        assertThat(cart.showTotalPrice(input), is("0.00"));
+    }
+
+    @Test
+    public void shouldInputStringByConsole_return_totalPrice() throws ParseException {
+        String separator = System.getProperty("line.separator");
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+        
+        String input = "2013.11.11 | 0.7 | 电子" + separator +
+                separator +
+                "1 * ipad : 2399.00" + separator +
+                "1 * 显示器 : 1799.00" + separator +
+                "12 * 啤酒 : 25.00" + separator +
+                "5 * 面 包 : 9.00" + separator +
+                separator +
+                "2013.11.11" + separator +
+                "2014.3.2 1000 200";
+        String[] args = new String[]{input};
+        Cart.main(args);
+        String output = outputStream.toString();
+        String expectOutput = input + separator + "Total Price: 3083.60" + separator;
+
+        assertThat(output, is(expectOutput));
     }
 }

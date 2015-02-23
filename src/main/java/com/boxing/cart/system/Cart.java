@@ -10,6 +10,8 @@ public class Cart {
 
     public static void main(String[] args) throws ParseException {
         String inputString = args[0];
+        String separator = System.getProperty("line.separator");
+        inputString=inputString.replaceAll(separator, "\n");
         inputString=inputString.replaceAll("\\\\n", "\n");
         System.out.println(inputString);
         
