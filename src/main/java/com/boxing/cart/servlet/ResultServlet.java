@@ -3,12 +3,11 @@ package com.boxing.cart.servlet;
 import com.boxing.cart.system.Cart;
 
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.text.ParseException;
 
 public class ResultServlet extends HttpServlet {
@@ -23,13 +22,11 @@ public class ResultServlet extends HttpServlet {
             throw new ServletException(e);
         }
 
-        ServletOutputStream outputStream = resp.getOutputStream();
         resp.setContentType("text/html;charset=UTF-8");
-        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
-        outputStreamWriter.write("<div>The total price is " + totalPrice + ".</div>");
-        outputStreamWriter.write("<a href=\"index\">Back</a>");
-        outputStreamWriter.flush();
-        outputStreamWriter.close();
+        PrintWriter writer = resp.getWriter();
+        writer.write("<div>The total price is " + totalPrice + ".</div>");
+        writer.write("<a href=\"index\">Back</a>");
+        writer.flush();
     }
 
     private String formatInputInformation(HttpServletRequest req) {
