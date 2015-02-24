@@ -19,7 +19,7 @@ public class DiscountCalculator extends Calculator {
 
         Map<ItemType, Double> discountMap = new HashMap<ItemType, Double>();
 
-        if (discountList!=null) {
+        if (isListValid(discountList)) {
             abstractDiscountInformation(discountList, settlementCalendar, discountMap);
         }
 
@@ -31,6 +31,10 @@ public class DiscountCalculator extends Calculator {
         DecimalFormat totalPriceFormat = new DecimalFormat("0.00");
         totalPriceFormat.format(totalPrice);
         return Double.parseDouble(totalPriceFormat.format(totalPrice));
+    }
+
+    private boolean isListValid(List<Discount> discountList) {
+        return discountList != null && !discountList.isEmpty();
     }
 
     private void abstractDiscountInformation(List<Discount> discountList, Calendar settlementCalendar, Map<ItemType, Double> discountMap) {

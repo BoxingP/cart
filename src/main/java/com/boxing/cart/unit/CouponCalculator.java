@@ -12,11 +12,15 @@ public class CouponCalculator extends Calculator {
         List<Coupon> couponList = inputInformation.getCouponList();
         Calendar settlementCalendar = inputInformation.getSettlementCalendar();
 
-        if (couponList != null) {
+        if (isListValid(couponList)) {
             totalPrice = subtractCouponPrice(totalPrice, couponList, settlementCalendar);
         }
 
         return totalPrice;
+    }
+
+    private boolean isListValid(List<Coupon> couponList) {
+        return couponList != null && !couponList.isEmpty();
     }
 
     private double subtractCouponPrice(double totalPrice, List<Coupon> couponList, Calendar settlementCalendar) {

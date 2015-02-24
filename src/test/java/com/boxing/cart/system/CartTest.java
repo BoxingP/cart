@@ -48,7 +48,7 @@ public class CartTest {
 
     @Test
     public void shouldInputStringElectronicsFoodWithDiscountCoupon_return_3083point60() throws ParseException {
-        String input = "2013.11.11 | 0.7 | 电子\n\n1 * ipad : 2399.00\n1 * 显示器 : 1799.00\n12 * 啤酒 : 25.00\n5 * 面 包 : 9.00\n\n2013.11.11\n2014.3.2 1000 200";
+        String input = "2013.11.11 | 0.7 | 电子\n\n1 * ipad : 2399.00\n1 * 显示器 : 1799.00\n12 * 啤酒 : 25.00\n5 * 面包 : 9.00\n\n2013.11.11\n2014.3.2 1000 200";
 
         assertThat(cart.showTotalPrice(input), is("3083.60"));
     }
@@ -71,7 +71,7 @@ public class CartTest {
                 "1 * ipad : 2399.00" + separator +
                 "1 * 显示器 : 1799.00" + separator +
                 "12 * 啤酒 : 25.00" + separator +
-                "5 * 面 包 : 9.00" + separator +
+                "5 * 面包 : 9.00" + separator +
                 separator +
                 "2013.11.11" + separator +
                 "2014.3.2 1000 200";

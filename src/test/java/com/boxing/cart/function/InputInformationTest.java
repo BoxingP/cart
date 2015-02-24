@@ -15,7 +15,6 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.core.IsInstanceOf.instanceOf;
-import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertThat;
 
@@ -39,10 +38,10 @@ public class InputInformationTest {
         String input = "\n\n3 * 蔬菜 : 5.98\n8 * 餐巾纸 : 3.20\n\n2014.01.01\n";
         InputInformation inputInformation = InputInformation.convertStringToInputInformation(input);
 
-        assertThat(inputInformation.getDiscountList(), is(nullValue()));
+        assertThat(inputInformation.getDiscountList(), instanceOf(List.class));
         assertThat(inputInformation.getItemList(), instanceOf(List.class));
         assertThat(inputInformation.getSettlementCalendar(), instanceOf(Calendar.class));
-        assertThat(inputInformation.getCouponList(), is(nullValue()));
+        assertThat(inputInformation.getCouponList(), instanceOf(List.class));
     }
 
     @Test
@@ -54,10 +53,10 @@ public class InputInformationTest {
         expectItemList[0] = new Item(3, "蔬菜", 5.98);
         expectItemList[1] = new Item(8, "餐巾纸", 3.20);
 
-        assertThat(inputInformation.getDiscountList(), is(nullValue()));
+        assertThat(inputInformation.getDiscountList().isEmpty(), is(true));
         assertArrayEquals(inputInformation.getItemList().toArray(), expectItemList);
         assertThat(inputInformation.getSettlementCalendar(), is(calendar2014Jan1));
-        assertThat(inputInformation.getCouponList(), is(nullValue()));
+        assertThat(inputInformation.getCouponList().isEmpty(), is(true));
     }
 
     @Test
@@ -75,7 +74,7 @@ public class InputInformationTest {
         assertArrayEquals(inputInformation.getDiscountList().toArray(), expectDiscountList);
         assertArrayEquals(inputInformation.getItemList().toArray(), expectItemList);
         assertThat(inputInformation.getSettlementCalendar(), is(calendar2014Jan1));
-        assertThat(inputInformation.getCouponList(), is(nullValue()));
+        assertThat(inputInformation.getCouponList().isEmpty(), is(true));
     }
     
     @Test
