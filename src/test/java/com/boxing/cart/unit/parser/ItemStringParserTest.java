@@ -1,6 +1,8 @@
-package com.boxing.cart.unit;
+package com.boxing.cart.unit.parser;
 
 import com.boxing.cart.function.InputInformation;
+import com.boxing.cart.unit.information.Item;
+import com.boxing.cart.unit.information.ItemType;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -40,7 +42,7 @@ public class ItemStringParserTest {
 
     @Test
     public void shouldInputNotItemString_return_emptyItemList() throws ParseException {
-        String input="2014.11.11";
+        String input = "2014.11.11";
         InputInformation inputInformation = itemStringParser.parseInput(input, mockInputInformation);
 
         assertThat(inputInformation.getItemList().size(), is(0));

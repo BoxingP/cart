@@ -1,8 +1,10 @@
-package com.boxing.cart.unit;
+package com.boxing.cart.unit.calculator;
 
 import com.boxing.cart.function.InputInformation;
+import com.boxing.cart.unit.information.Coupon;
 
-import java.util.*;
+import java.util.Calendar;
+import java.util.List;
 
 public class CouponCalculator extends Calculator {
 

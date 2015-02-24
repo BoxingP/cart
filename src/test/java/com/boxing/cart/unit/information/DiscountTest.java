@@ -1,4 +1,4 @@
-package com.boxing.cart.unit;
+package com.boxing.cart.unit.information;
 
 import org.junit.Test;
 
@@ -17,7 +17,7 @@ public class DiscountTest {
         Date date2013Nov11 = new SimpleDateFormat("yyyy.MM.dd").parse("2013.11.11");
         Calendar calendar2013Nov11 = Calendar.getInstance();
         calendar2013Nov11.setTime(date2013Nov11);
-        
+
         Discount discount = new Discount(calendar2013Nov11, 0.7, ItemType.ELECTRONICS);
 
         assertThat(discount.getDiscountCalendar(), is(calendar2013Nov11));

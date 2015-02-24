@@ -1,6 +1,7 @@
-package com.boxing.cart.unit;
+package com.boxing.cart.unit.calculator;
 
 import com.boxing.cart.function.InputInformation;
+import com.boxing.cart.unit.information.Coupon;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,7 +22,7 @@ public class CouponCalculatorTest {
     Calendar calendar14Mar1;
     Calendar calendar14Mar2;
     InputInformation mockInputInformation;
-    
+
     @Before
     public void initObject() throws ParseException {
         couponCalculator = new CouponCalculator();
@@ -29,22 +30,22 @@ public class CouponCalculatorTest {
         Date date14Mar1 = new SimpleDateFormat("yyyy.MM.dd").parse("2014.3.1");
         calendar14Mar1 = Calendar.getInstance();
         calendar14Mar1.setTime(date14Mar1);
-        
+
         Date date14Mar2 = new SimpleDateFormat("yyyy.MM.dd").parse("2014.3.2");
         calendar14Mar2 = Calendar.getInstance();
         calendar14Mar2.setTime(date14Mar2);
 
         mockInputInformation = mock(InputInformation.class);
     }
-    
+
     @Test
     public void shouldTotalPrice1000CouponValid_return_800() throws ParseException {
         List<Coupon> mockCouponList = new ArrayList<Coupon>();
         mockCouponList.add(new Coupon(calendar14Mar2, 1000d, 200d));
-        
+
         when(mockInputInformation.getSettlementCalendar()).thenReturn(calendar14Mar2);
         when(mockInputInformation.getCouponList()).thenReturn(mockCouponList);
-        
+
         assertThat(couponCalculator.calculate(1000, mockInputInformation), is(800.d));
     }
 

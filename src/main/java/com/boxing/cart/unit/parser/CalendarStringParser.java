@@ -1,4 +1,4 @@
-package com.boxing.cart.unit;
+package com.boxing.cart.unit.parser;
 
 import com.boxing.cart.function.InputInformation;
 
@@ -9,12 +9,12 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class CalendarStringParser extends Parser{
+public class CalendarStringParser extends Parser {
     @Override
     public InputInformation parseInput(String input, InputInformation inputInformation) throws ParseException {
         Calendar settlementCalendar = inputInformation.getSettlementCalendar();
-        
-        if(isSettlementString(input)){
+
+        if (isSettlementString(input)) {
             settlementCalendar = extractCalendar(input);
         }
 

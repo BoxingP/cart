@@ -1,6 +1,9 @@
-package com.boxing.cart.unit;
+package com.boxing.cart.unit.calculator;
 
 import com.boxing.cart.function.InputInformation;
+import com.boxing.cart.unit.information.Discount;
+import com.boxing.cart.unit.information.Item;
+import com.boxing.cart.unit.information.ItemType;
 
 import java.text.DecimalFormat;
 import java.util.Calendar;

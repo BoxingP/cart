@@ -1,4 +1,4 @@
-package com.boxing.cart.unit;
+package com.boxing.cart.unit.parser;
 
 import com.boxing.cart.function.InputInformation;
 import org.junit.Before;
@@ -33,7 +33,7 @@ public class CalendarStringParserTest {
 
     @Test
     public void shouldInputCalendarString_return_Calendar() throws ParseException {
-        String input="2014.1.1";
+        String input = "2014.1.1";
         InputInformation inputInformation = calendarStringParser.parseInput(input, mockInputInformation);
 
         assertThat(inputInformation.getSettlementCalendar(), is(calendar2014Jan1));
@@ -41,7 +41,7 @@ public class CalendarStringParserTest {
 
     @Test
     public void shouldInputNotCalendarString_return_Null() throws ParseException {
-        String input="2014.1.1 1000 200";
+        String input = "2014.1.1 1000 200";
         InputInformation inputInformation = calendarStringParser.parseInput(input, mockInputInformation);
 
         assertThat(inputInformation.getSettlementCalendar(), is(nullValue()));

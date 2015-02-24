@@ -15,7 +15,7 @@ public class ResultServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String inputInformation = formatInputInformation(req);
         String totalPrice;
-        
+
         try {
             totalPrice = calculateTotalPrice(inputInformation);
         } catch (ParseException e) {
@@ -35,9 +35,9 @@ public class ResultServlet extends HttpServlet {
         String settlementInformation = req.getParameter("settlement_information");
         String couponInformation = req.getParameter("coupon_information");
 
-        discountInformation = discountInformation.replaceAll(",","\n");
-        itemInformation = itemInformation.replaceAll(",","\n");
-        couponInformation = couponInformation.replaceAll(",","\n");
+        discountInformation = discountInformation.replaceAll(",", "\n");
+        itemInformation = itemInformation.replaceAll(",", "\n");
+        couponInformation = couponInformation.replaceAll(",", "\n");
 
         return discountInformation + "\n\n" + itemInformation + "\n\n" + settlementInformation + "\n" + couponInformation;
     }

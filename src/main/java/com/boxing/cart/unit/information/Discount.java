@@ -1,4 +1,4 @@
-package com.boxing.cart.unit;
+package com.boxing.cart.unit.information;
 
 import java.util.Calendar;
 

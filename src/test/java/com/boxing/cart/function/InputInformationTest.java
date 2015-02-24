@@ -1,9 +1,9 @@
 package com.boxing.cart.function;
 
-import com.boxing.cart.unit.Coupon;
-import com.boxing.cart.unit.Discount;
-import com.boxing.cart.unit.Item;
-import com.boxing.cart.unit.ItemType;
+import com.boxing.cart.unit.information.Coupon;
+import com.boxing.cart.unit.information.Discount;
+import com.boxing.cart.unit.information.Item;
+import com.boxing.cart.unit.information.ItemType;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,7 +20,7 @@ import static org.junit.Assert.assertThat;
 public class InputInformationTest {
     Calendar calendar2014Jan1;
     Calendar calendar2014Mar2;
-    
+
     @Before
     public void initObject() throws ParseException {
         Date date2014Jan1 = new SimpleDateFormat("yyyy.MM.dd").parse("2014.01.01");
@@ -66,16 +66,15 @@ public class InputInformationTest {
         assertThat(inputInformation.getDiscountList().size(), is(1));
         List<Discount> discountList = inputInformation.getDiscountList();
         assertDiscountListIsExpected(discountList);
-        
+
         assertThat(inputInformation.getItemList().size(), is(2));
         List<Item> itemList = inputInformation.getItemList();
         assertItemListIsExpected(itemList);
-        
+
         assertThat(inputInformation.getSettlementCalendar(), is(calendar2014Jan1));
         assertThat(inputInformation.getCouponList().isEmpty(), is(true));
     }
 
-    
 
     @Test
     public void shouldInputStringWithDiscountCoupon_return_ItemListSettlementCalendarDiscountCoupon() throws ParseException {
@@ -85,7 +84,7 @@ public class InputInformationTest {
         assertThat(inputInformation.getDiscountList().size(), is(1));
         List<Discount> discountList = inputInformation.getDiscountList();
         assertDiscountListIsExpected(discountList);
-        
+
         assertThat(inputInformation.getItemList().size(), is(2));
         List<Item> itemList = inputInformation.getItemList();
         assertItemListIsExpected(itemList);

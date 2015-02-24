@@ -1,6 +1,7 @@
-package com.boxing.cart.unit;
+package com.boxing.cart.unit.parser;
 
 import com.boxing.cart.function.InputInformation;
+import com.boxing.cart.unit.information.Coupon;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -33,7 +34,7 @@ public class CouponStringParserTest {
 
     @Test
     public void shouldInputCouponString_return_CouponList() throws ParseException {
-        String input="2014.1.1 1000 200";
+        String input = "2014.1.1 1000 200";
         InputInformation inputInformation = couponStringParser.parseInput(input, mockInputInformation);
 
         assertThat(inputInformation.getCouponList().size(), is(1));
@@ -47,7 +48,7 @@ public class CouponStringParserTest {
 
     @Test
     public void shouldInputNotCouponString_return_emptyCouponList() throws ParseException {
-        String input="2014.11.11";
+        String input = "2014.11.11";
         InputInformation inputInformation = couponStringParser.parseInput(input, mockInputInformation);
 
         assertThat(inputInformation.getCouponList().size(), is(0));

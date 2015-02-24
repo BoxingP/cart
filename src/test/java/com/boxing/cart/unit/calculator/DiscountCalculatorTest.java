@@ -1,6 +1,9 @@
-package com.boxing.cart.unit;
+package com.boxing.cart.unit.calculator;
 
 import com.boxing.cart.function.InputInformation;
+import com.boxing.cart.unit.information.Discount;
+import com.boxing.cart.unit.information.Item;
+import com.boxing.cart.unit.information.ItemType;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,19 +25,19 @@ public class DiscountCalculatorTest {
     Calendar calendar14Jan1;
     Calendar calendar14Jan2;
     InputInformation mockInputInformation;
-    
+
     @Before
     public void initObject() throws ParseException {
         discountCalculator = new DiscountCalculator();
-        
+
         Date date14Jan1 = new SimpleDateFormat("yyyy.MM.dd").parse("2014.01.01");
         calendar14Jan1 = Calendar.getInstance();
         calendar14Jan1.setTime(date14Jan1);
-        
+
         Date date14Jan2 = new SimpleDateFormat("yyyy.MM.dd").parse("2014.01.02");
         calendar14Jan2 = Calendar.getInstance();
         calendar14Jan2.setTime(date14Jan2);
-        
+
         mockInputInformation = mock(InputInformation.class);
     }
 

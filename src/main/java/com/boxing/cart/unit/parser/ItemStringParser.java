@@ -1,6 +1,7 @@
-package com.boxing.cart.unit;
+package com.boxing.cart.unit.parser;
 
 import com.boxing.cart.function.InputInformation;
+import com.boxing.cart.unit.information.Item;
 
 import java.text.ParseException;
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ItemStringParser extends Parser {
-    
+
     @Override
     public InputInformation parseInput(String input, InputInformation inputInformation) throws ParseException {
         List<Item> itemList = inputInformation.getItemList();

@@ -1,18 +1,18 @@
 package com.boxing.cart.function;
 
-import com.boxing.cart.unit.Calculator;
-import com.boxing.cart.unit.CouponCalculator;
-import com.boxing.cart.unit.DiscountCalculator;
+import com.boxing.cart.unit.calculator.Calculator;
+import com.boxing.cart.unit.calculator.CouponCalculator;
+import com.boxing.cart.unit.calculator.DiscountCalculator;
 
 import java.text.DecimalFormat;
 
 public class TotalPriceCalculator {
     public double calculateTotalPrice(InputInformation inputInformation) {
         double totalPrice = 0d;
-        
+
         Calculator discountCalculator = new DiscountCalculator();
         totalPrice = discountCalculator.calculate(totalPrice, inputInformation);
-        
+
         Calculator couponCalculator = new CouponCalculator();
         totalPrice = couponCalculator.calculate(totalPrice, inputInformation);
 

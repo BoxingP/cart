@@ -65,7 +65,7 @@ public class CartTest {
         String separator = System.getProperty("line.separator");
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
-        
+
         String input = "2013.11.11 | 0.7 | 电子" + separator +
                 separator +
                 "1 * ipad : 2399.00" + separator +

@@ -1,9 +1,9 @@
 package com.boxing.cart.function;
 
-import com.boxing.cart.unit.Coupon;
-import com.boxing.cart.unit.Discount;
-import com.boxing.cart.unit.Item;
-import com.boxing.cart.unit.ItemType;
+import com.boxing.cart.unit.information.Coupon;
+import com.boxing.cart.unit.information.Discount;
+import com.boxing.cart.unit.information.Item;
+import com.boxing.cart.unit.information.ItemType;
 import org.junit.Before;
 import org.junit.Test;
 

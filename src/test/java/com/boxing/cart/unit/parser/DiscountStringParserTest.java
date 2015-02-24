@@ -1,6 +1,8 @@
-package com.boxing.cart.unit;
+package com.boxing.cart.unit.parser;
 
 import com.boxing.cart.function.InputInformation;
+import com.boxing.cart.unit.information.Discount;
+import com.boxing.cart.unit.information.ItemType;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -33,7 +35,7 @@ public class DiscountStringParserTest {
 
     @Test
     public void shouldInputDiscountString_return_DiscountList() throws ParseException {
-        String input="2014.01.01 | 0.7 | 食品";
+        String input = "2014.01.01 | 0.7 | 食品";
         InputInformation inputInformation = discountStringParser.parseInput(input, mockInputInformation);
 
         assertThat(inputInformation.getDiscountList().size(), is(1));
@@ -47,7 +49,7 @@ public class DiscountStringParserTest {
 
     @Test
     public void shouldInputNotDiscountString_return_emptyDiscountList() throws ParseException {
-        String input="2014.11.11";
+        String input = "2014.11.11";
         InputInformation inputInformation = discountStringParser.parseInput(input, mockInputInformation);
 
         assertThat(inputInformation.getDiscountList().size(), is(0));
