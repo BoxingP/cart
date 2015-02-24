@@ -18,7 +18,8 @@ public class CalendarStringParser extends Parser {
             settlementCalendar = extractCalendar(input);
         }
 
-        return new InputInformation(inputInformation.getDiscountList(), inputInformation.getItemList(), settlementCalendar, inputInformation.getCouponList());
+        inputInformation.setSettlementCalendar(settlementCalendar);
+        return inputInformation;
     }
 
     private boolean isSettlementString(String input) {

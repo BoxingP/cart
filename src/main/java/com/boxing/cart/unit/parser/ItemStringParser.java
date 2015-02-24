@@ -23,7 +23,8 @@ public class ItemStringParser extends Parser {
             itemList.add(new Item(itemAmount, itemName, itemUnitPrice));
         }
 
-        return new InputInformation(inputInformation.getDiscountList(), itemList, inputInformation.getSettlementCalendar(), inputInformation.getCouponList());
+        inputInformation.setItemList(itemList);
+        return inputInformation;
     }
 
     private boolean isItemString(String input) {

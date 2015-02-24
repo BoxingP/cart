@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -51,8 +52,7 @@ public class InputInformationTest {
         assertThat(inputInformation.getDiscountList().isEmpty(), is(true));
 
         assertThat(inputInformation.getItemList().size(), is(2));
-        List<Item> itemList = inputInformation.getItemList();
-        assertItemListIsExpected(itemList);
+        assertItemListIsExpected(inputInformation.getItemList());
 
         assertThat(inputInformation.getSettlementCalendar(), is(calendar2014Jan1));
         assertThat(inputInformation.getCouponList().isEmpty(), is(true));
@@ -64,12 +64,10 @@ public class InputInformationTest {
         InputInformation inputInformation = InputInformation.convertStringToInputInformation(input);
 
         assertThat(inputInformation.getDiscountList().size(), is(1));
-        List<Discount> discountList = inputInformation.getDiscountList();
-        assertDiscountListIsExpected(discountList);
+        assertDiscountListIsExpected(inputInformation.getDiscountList());
 
         assertThat(inputInformation.getItemList().size(), is(2));
-        List<Item> itemList = inputInformation.getItemList();
-        assertItemListIsExpected(itemList);
+        assertItemListIsExpected(inputInformation.getItemList());
 
         assertThat(inputInformation.getSettlementCalendar(), is(calendar2014Jan1));
         assertThat(inputInformation.getCouponList().isEmpty(), is(true));
@@ -82,18 +80,60 @@ public class InputInformationTest {
         InputInformation inputInformation = InputInformation.convertStringToInputInformation(input);
 
         assertThat(inputInformation.getDiscountList().size(), is(1));
-        List<Discount> discountList = inputInformation.getDiscountList();
-        assertDiscountListIsExpected(discountList);
+        assertDiscountListIsExpected(inputInformation.getDiscountList());
 
         assertThat(inputInformation.getItemList().size(), is(2));
-        List<Item> itemList = inputInformation.getItemList();
-        assertItemListIsExpected(itemList);
+        assertItemListIsExpected(inputInformation.getItemList());
 
         assertThat(inputInformation.getSettlementCalendar(), is(calendar2014Jan1));
 
         assertThat(inputInformation.getCouponList().size(), is(1));
-        List<Coupon> couponList = inputInformation.getCouponList();
-        assertCouponListIsExpected(couponList);
+        assertCouponListIsExpected(inputInformation.getCouponList());
+    }
+
+    @Test
+    public void shouldSetInputInformationItemList_return_expectedItemList() throws ParseException {
+        List<Item> expectedItemList = new ArrayList<Item>();
+        expectedItemList.add(new Item(3, "蔬菜", 5.98));
+        expectedItemList.add(new Item(8, "餐巾纸", 3.20));
+
+        InputInformation inputInformation = new InputInformation(new ArrayList<Discount>(), new ArrayList<Item>(), null, new ArrayList<Coupon>());
+        inputInformation.setItemList(expectedItemList);
+
+        assertThat(inputInformation.getItemList().size(), is(2));
+        assertItemListIsExpected(inputInformation.getItemList());
+    }
+
+    @Test
+    public void shouldSetInputInformationDiscountList_return_expectedDiscountList() throws ParseException {
+        List<Discount> expectedDiscountList = new ArrayList<Discount>();
+        expectedDiscountList.add(new Discount(calendar2014Jan1, 0.7, ItemType.FOOD));
+
+        InputInformation inputInformation = new InputInformation(new ArrayList<Discount>(), new ArrayList<Item>(), null, new ArrayList<Coupon>());
+        inputInformation.setDiscountList(expectedDiscountList);
+
+        assertThat(inputInformation.getDiscountList().size(), is(1));
+        assertDiscountListIsExpected(inputInformation.getDiscountList());
+    }
+
+    @Test
+    public void shouldSetInputInformationCouponList_return_expectedCouponList() throws ParseException {
+        List<Coupon> expectedCouponList = new ArrayList<Coupon>();
+        expectedCouponList.add(new Coupon(calendar2014Mar2, 40d, 5d));
+
+        InputInformation inputInformation = new InputInformation(new ArrayList<Discount>(), new ArrayList<Item>(), null, new ArrayList<Coupon>());
+        inputInformation.setCouponList(expectedCouponList);
+
+        assertThat(inputInformation.getCouponList().size(), is(1));
+        assertCouponListIsExpected(inputInformation.getCouponList());
+    }
+
+    @Test
+    public void shouldSetInputInformationSettlementCalendar_return_expectedCalendar() throws ParseException {
+        InputInformation inputInformation = new InputInformation(new ArrayList<Discount>(), new ArrayList<Item>(), null, new ArrayList<Coupon>());
+        inputInformation.setSettlementCalendar(calendar2014Jan1);
+
+        assertThat(inputInformation.getSettlementCalendar(), is(calendar2014Jan1));
     }
 
     private void assertItemListIsExpected(List<Item> itemList) {

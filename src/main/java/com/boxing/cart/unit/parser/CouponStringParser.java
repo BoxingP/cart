@@ -24,7 +24,8 @@ public class CouponStringParser extends Parser {
             couponList.add(new Coupon(couponCalendar, validTotalPrice, couponPrice));
         }
 
-        return new InputInformation(inputInformation.getDiscountList(), inputInformation.getItemList(), inputInformation.getSettlementCalendar(), couponList);
+        inputInformation.setCouponList(couponList);
+        return inputInformation;
     }
 
     private boolean isCouponString(String input) {

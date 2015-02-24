@@ -64,4 +64,20 @@ public class InputInformation {
     private static boolean isStringValid(String string) {
         return string != null && !string.equals("");
     }
+
+    public void setItemList(List<Item> itemList) {
+        this.itemList = itemList;
+    }
+
+    public void setDiscountList(List<Discount> discountList) {
+        this.discountList = discountList;
+    }
+
+    public void setCouponList(List<Coupon> couponList) {
+        this.couponList = couponList;
+    }
+
+    public void setSettlementCalendar(Calendar settlementCalendar) {
+        this.settlementCalendar = settlementCalendar;
+    }
 }

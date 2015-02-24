@@ -2,6 +2,8 @@ package com.boxing.cart.unit.parser;
 
 import com.boxing.cart.function.InputInformation;
 import com.boxing.cart.unit.information.Coupon;
+import com.boxing.cart.unit.information.Discount;
+import com.boxing.cart.unit.information.Item;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,19 +15,16 @@ import java.util.Date;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class CouponStringParserTest {
     CouponStringParser couponStringParser;
-    InputInformation mockInputInformation;
+    InputInformation inputInformation;
     Calendar calendar2014Jan1;
 
     @Before
     public void initObject() throws ParseException {
         couponStringParser = new CouponStringParser();
-        mockInputInformation = mock(InputInformation.class);
-        when(mockInputInformation.getCouponList()).thenReturn(new ArrayList<Coupon>());
+        inputInformation = new InputInformation(new ArrayList<Discount>(), new ArrayList<Item>(), null, new ArrayList<Coupon>());
 
         Date date2014Jan1 = new SimpleDateFormat("yyyy.MM.dd").parse("2014.01.01");
         calendar2014Jan1 = Calendar.getInstance();
@@ -35,7 +34,7 @@ public class CouponStringParserTest {
     @Test
     public void shouldInputCouponString_return_CouponList() throws ParseException {
         String input = "2014.1.1 1000 200";
-        InputInformation inputInformation = couponStringParser.parseInput(input, mockInputInformation);
+        InputInformation inputInformation = couponStringParser.parseInput(input, this.inputInformation);
 
         assertThat(inputInformation.getCouponList().size(), is(1));
 
@@ -49,7 +48,7 @@ public class CouponStringParserTest {
     @Test
     public void shouldInputNotCouponString_return_emptyCouponList() throws ParseException {
         String input = "2014.11.11";
-        InputInformation inputInformation = couponStringParser.parseInput(input, mockInputInformation);
+        InputInformation inputInformation = couponStringParser.parseInput(input, this.inputInformation);
 
         assertThat(inputInformation.getCouponList().size(), is(0));
     }

@@ -25,7 +25,8 @@ public class DiscountStringParser extends Parser {
             discountList.add(new Discount(discountCalendar, discountRate, discountItemType));
         }
 
-        return new InputInformation(discountList, inputInformation.getItemList(), inputInformation.getSettlementCalendar(), inputInformation.getCouponList());
+        inputInformation.setDiscountList(discountList);
+        return inputInformation;
     }
 
     private boolean isDiscountString(String input) {
