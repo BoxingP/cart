@@ -17,7 +17,6 @@ public class TotalPriceCalculator {
         totalPrice = couponCalculator.calculate(totalPrice, inputInformation);
 
         DecimalFormat totalPriceFormat = new DecimalFormat("0.00");
-        totalPriceFormat.format(totalPrice);
         return Double.parseDouble(totalPriceFormat.format(totalPrice));
     }
 }
