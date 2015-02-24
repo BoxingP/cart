@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 
 public class CalendarStringParser extends Parser {
     @Override
-    public InputInformation parseInput(String input, InputInformation inputInformation) throws ParseException {
+    public void parseInput(String input, InputInformation inputInformation) throws ParseException {
         Calendar settlementCalendar = inputInformation.getSettlementCalendar();
 
         if (isSettlementString(input)) {
@@ -19,7 +19,6 @@ public class CalendarStringParser extends Parser {
         }
 
         inputInformation.setSettlementCalendar(settlementCalendar);
-        return inputInformation;
     }
 
     private boolean isSettlementString(String input) {

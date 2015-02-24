@@ -53,7 +53,7 @@ public class InputInformation {
         for (String string : information) {
             if (isStringValid(string)) {
                 for (Parser parser : parsers) {
-                    inputInformation = parser.parseInput(string, inputInformation);
+                    parser.parseInput(string, inputInformation);
                 }
             }
         }

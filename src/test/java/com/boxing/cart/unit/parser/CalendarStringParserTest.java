@@ -19,13 +19,11 @@ import static org.junit.Assert.assertThat;
 
 public class CalendarStringParserTest {
     CalendarStringParser calendarStringParser;
-    InputInformation inputInformation;
     Calendar calendar2014Jan1;
 
     @Before
     public void initObject() throws ParseException {
         calendarStringParser = new CalendarStringParser();
-        inputInformation = new InputInformation(new ArrayList<Discount>(), new ArrayList<Item>(), null, new ArrayList<Coupon>());
 
         Date date2014Jan1 = new SimpleDateFormat("yyyy.MM.dd").parse("2014.01.01");
         calendar2014Jan1 = Calendar.getInstance();
@@ -35,7 +33,8 @@ public class CalendarStringParserTest {
     @Test
     public void shouldInputCalendarString_return_Calendar() throws ParseException {
         String input = "2014.1.1";
-        InputInformation inputInformation = calendarStringParser.parseInput(input, this.inputInformation);
+        InputInformation inputInformation = new InputInformation(new ArrayList<Discount>(), new ArrayList<Item>(), null, new ArrayList<Coupon>());
+        calendarStringParser.parseInput(input, inputInformation);
 
         assertThat(inputInformation.getSettlementCalendar(), is(calendar2014Jan1));
     }
@@ -43,7 +42,8 @@ public class CalendarStringParserTest {
     @Test
     public void shouldInputNotCalendarString_return_Null() throws ParseException {
         String input = "2014.1.1 1000 200";
-        InputInformation inputInformation = calendarStringParser.parseInput(input, this.inputInformation);
+        InputInformation inputInformation = new InputInformation(new ArrayList<Discount>(), new ArrayList<Item>(), null, new ArrayList<Coupon>());
+        calendarStringParser.parseInput(input, inputInformation);
 
         assertThat(inputInformation.getSettlementCalendar(), is(nullValue()));
     }

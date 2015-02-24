@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 
 public class DiscountStringParser extends Parser {
     @Override
-    public InputInformation parseInput(String input, InputInformation inputInformation) throws ParseException {
+    public void parseInput(String input, InputInformation inputInformation) throws ParseException {
         List<Discount> discountList = inputInformation.getDiscountList();
 
         if (isDiscountString(input)) {
@@ -26,7 +26,6 @@ public class DiscountStringParser extends Parser {
         }
 
         inputInformation.setDiscountList(discountList);
-        return inputInformation;
     }
 
     private boolean isDiscountString(String input) {

@@ -19,13 +19,11 @@ import static org.junit.Assert.assertThat;
 
 public class DiscountStringParserTest {
     DiscountStringParser discountStringParser;
-    InputInformation inputInformation;
     Calendar calendar2014Jan1;
 
     @Before
     public void initObject() throws ParseException {
         discountStringParser = new DiscountStringParser();
-        inputInformation = new InputInformation(new ArrayList<Discount>(), new ArrayList<Item>(), null, new ArrayList<Coupon>());
 
         Date date2014Jan1 = new SimpleDateFormat("yyyy.MM.dd").parse("2014.01.01");
         calendar2014Jan1 = Calendar.getInstance();
@@ -35,7 +33,8 @@ public class DiscountStringParserTest {
     @Test
     public void shouldInputDiscountString_return_DiscountList() throws ParseException {
         String input = "2014.01.01 | 0.7 | 食品";
-        InputInformation inputInformation = discountStringParser.parseInput(input, this.inputInformation);
+        InputInformation inputInformation = new InputInformation(new ArrayList<Discount>(), new ArrayList<Item>(), null, new ArrayList<Coupon>());
+        discountStringParser.parseInput(input, inputInformation);
 
         assertThat(inputInformation.getDiscountList().size(), is(1));
 
@@ -49,7 +48,8 @@ public class DiscountStringParserTest {
     @Test
     public void shouldInputNotDiscountString_return_emptyDiscountList() throws ParseException {
         String input = "2014.11.11";
-        InputInformation inputInformation = discountStringParser.parseInput(input, this.inputInformation);
+        InputInformation inputInformation = new InputInformation(new ArrayList<Discount>(), new ArrayList<Item>(), null, new ArrayList<Coupon>());
+        discountStringParser.parseInput(input, inputInformation);
 
         assertThat(inputInformation.getDiscountList().size(), is(0));
     }

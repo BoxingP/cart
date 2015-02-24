@@ -16,18 +16,17 @@ import static org.junit.Assert.assertThat;
 
 public class ItemStringParserTest {
     ItemStringParser itemStringParser;
-    InputInformation inputInformation;
 
     @Before
     public void initObject() throws ParseException {
         itemStringParser = new ItemStringParser();
-        inputInformation = new InputInformation(new ArrayList<Discount>(), new ArrayList<Item>(), null, new ArrayList<Coupon>());
     }
 
     @Test
     public void shouldInputItemString_return_ItemList() throws ParseException {
         String input = "3 * 蔬菜 : 5.98";
-        InputInformation inputInformation = itemStringParser.parseInput(input, this.inputInformation);
+        InputInformation inputInformation = new InputInformation(new ArrayList<Discount>(), new ArrayList<Item>(), null, new ArrayList<Coupon>());
+        itemStringParser.parseInput(input, inputInformation);
 
         assertThat(inputInformation.getItemList().size(), is(1));
 
@@ -42,7 +41,8 @@ public class ItemStringParserTest {
     @Test
     public void shouldInputNotItemString_return_emptyItemList() throws ParseException {
         String input = "2014.11.11";
-        InputInformation inputInformation = itemStringParser.parseInput(input, this.inputInformation);
+        InputInformation inputInformation = new InputInformation(new ArrayList<Discount>(), new ArrayList<Item>(), null, new ArrayList<Coupon>());
+        itemStringParser.parseInput(input, inputInformation);
 
         assertThat(inputInformation.getItemList().size(), is(0));
     }

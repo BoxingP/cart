@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 
 public class CouponStringParser extends Parser {
     @Override
-    public InputInformation parseInput(String input, InputInformation inputInformation) throws ParseException {
+    public void parseInput(String input, InputInformation inputInformation) throws ParseException {
         List<Coupon> couponList = inputInformation.getCouponList();
 
         if (isCouponString(input)) {
@@ -25,7 +25,6 @@ public class CouponStringParser extends Parser {
         }
 
         inputInformation.setCouponList(couponList);
-        return inputInformation;
     }
 
     private boolean isCouponString(String input) {

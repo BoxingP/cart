@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 public class ItemStringParser extends Parser {
 
     @Override
-    public InputInformation parseInput(String input, InputInformation inputInformation) throws ParseException {
+    public void parseInput(String input, InputInformation inputInformation) throws ParseException {
         List<Item> itemList = inputInformation.getItemList();
         if (isItemString(input)) {
             String[] itemInformation = input.split(" \\* | : ");
@@ -24,7 +24,6 @@ public class ItemStringParser extends Parser {
         }
 
         inputInformation.setItemList(itemList);
-        return inputInformation;
     }
 
     private boolean isItemString(String input) {
