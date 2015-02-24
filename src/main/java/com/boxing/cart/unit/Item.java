@@ -39,24 +39,4 @@ public class Item extends Information {
             }
         }
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Item item = (Item) o;
-
-        if (itemAmount != item.itemAmount) return false;
-        if (Double.compare(item.itemUnitPrice, itemUnitPrice) != 0) return false;
-        if (itemName != null ? !itemName.equals(item.itemName) : item.itemName != null) return false;
-        if (itemType != item.itemType) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return 0;
-    }
 }
