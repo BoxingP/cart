@@ -12,9 +12,8 @@ import java.util.regex.Pattern;
 public class CouponStringParser extends Parser {
     @Override
     public void parseInput(String input, InputInformation inputInformation) throws ParseException {
-        List<Coupon> couponList = inputInformation.getCouponList();
-
         if (isCouponString(input)) {
+            List<Coupon> couponList = inputInformation.getCouponList();
             String[] couponInformation = input.split(" ");
 
             Calendar couponCalendar = CalendarStringParser.extractCalendar(couponInformation[0]);
@@ -22,9 +21,8 @@ public class CouponStringParser extends Parser {
             double couponPrice = Double.parseDouble(couponInformation[2]);
 
             couponList.add(new Coupon(couponCalendar, validTotalPrice, couponPrice));
+            inputInformation.setCouponList(couponList);
         }
-
-        inputInformation.setCouponList(couponList);
     }
 
     private boolean isCouponString(String input) {

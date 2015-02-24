@@ -12,13 +12,10 @@ import java.util.regex.Pattern;
 public class CalendarStringParser extends Parser {
     @Override
     public void parseInput(String input, InputInformation inputInformation) throws ParseException {
-        Calendar settlementCalendar = inputInformation.getSettlementCalendar();
-
         if (isSettlementString(input)) {
-            settlementCalendar = extractCalendar(input);
+            Calendar settlementCalendar = extractCalendar(input);
+            inputInformation.setSettlementCalendar(settlementCalendar);
         }
-
-        inputInformation.setSettlementCalendar(settlementCalendar);
     }
 
     private boolean isSettlementString(String input) {

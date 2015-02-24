@@ -12,8 +12,8 @@ public class ItemStringParser extends Parser {
 
     @Override
     public void parseInput(String input, InputInformation inputInformation) throws ParseException {
-        List<Item> itemList = inputInformation.getItemList();
         if (isItemString(input)) {
+            List<Item> itemList = inputInformation.getItemList();
             String[] itemInformation = input.split(" \\* | : ");
 
             int itemAmount = Integer.parseInt(itemInformation[0]);
@@ -21,9 +21,8 @@ public class ItemStringParser extends Parser {
             double itemUnitPrice = Double.parseDouble(itemInformation[2]);
 
             itemList.add(new Item(itemAmount, itemName, itemUnitPrice));
+            inputInformation.setItemList(itemList);
         }
-
-        inputInformation.setItemList(itemList);
     }
 
     private boolean isItemString(String input) {

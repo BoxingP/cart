@@ -13,9 +13,8 @@ import java.util.regex.Pattern;
 public class DiscountStringParser extends Parser {
     @Override
     public void parseInput(String input, InputInformation inputInformation) throws ParseException {
-        List<Discount> discountList = inputInformation.getDiscountList();
-
         if (isDiscountString(input)) {
+            List<Discount> discountList = inputInformation.getDiscountList();
             String[] discountInformationElements = input.split(" \\| ");
 
             Calendar discountCalendar = CalendarStringParser.extractCalendar(discountInformationElements[0]);
@@ -23,9 +22,8 @@ public class DiscountStringParser extends Parser {
             ItemType discountItemType = ItemType.abstractItemType(discountInformationElements[2]);
 
             discountList.add(new Discount(discountCalendar, discountRate, discountItemType));
+            inputInformation.setDiscountList(discountList);
         }
-
-        inputInformation.setDiscountList(discountList);
     }
 
     private boolean isDiscountString(String input) {
