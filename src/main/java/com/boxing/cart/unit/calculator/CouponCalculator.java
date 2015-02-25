@@ -6,7 +6,7 @@ import com.boxing.cart.unit.information.Coupon;
 import java.util.Calendar;
 import java.util.List;
 
-public class CouponCalculator extends Calculator {
+public class CouponCalculator implements Calculator {
 
     @Override
     public double calculate(double totalPrice, InputInformation inputInformation) {

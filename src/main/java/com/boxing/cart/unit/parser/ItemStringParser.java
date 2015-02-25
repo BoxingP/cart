@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ItemStringParser extends Parser {
+public class ItemStringParser implements Parser {
 
     @Override
     public void parseInput(String input, InputInformation inputInformation) throws ParseException {

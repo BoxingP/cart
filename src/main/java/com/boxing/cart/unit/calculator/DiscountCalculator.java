@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DiscountCalculator extends Calculator {
+public class DiscountCalculator implements Calculator {
 
     @Override
     public double calculate(double totalPrice, InputInformation inputInformation) {

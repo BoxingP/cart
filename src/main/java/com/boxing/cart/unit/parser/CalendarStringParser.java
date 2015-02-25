@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class CalendarStringParser extends Parser {
+public class CalendarStringParser implements Parser {
     @Override
     public void parseInput(String input, InputInformation inputInformation) throws ParseException {
         if (isSettlementString(input)) {

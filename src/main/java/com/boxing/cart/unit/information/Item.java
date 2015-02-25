@@ -2,7 +2,7 @@ package com.boxing.cart.unit.information;
 
 import java.util.Arrays;
 
-public class Item extends Information {
+public class Item implements Information {
     private int itemAmount;
     private String itemName;
     private double itemUnitPrice;

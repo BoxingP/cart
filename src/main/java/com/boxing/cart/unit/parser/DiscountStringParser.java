@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class DiscountStringParser extends Parser {
+public class DiscountStringParser implements Parser {
     @Override
     public void parseInput(String input, InputInformation inputInformation) throws ParseException {
         if (isDiscountString(input)) {

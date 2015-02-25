@@ -4,6 +4,6 @@ import com.boxing.cart.function.InputInformation;
 
 import java.text.ParseException;
 
-public abstract class Parser {
+public interface Parser {
     public abstract void parseInput(String input, InputInformation inputInformation) throws ParseException;
 }

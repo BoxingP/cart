@@ -2,7 +2,7 @@ package com.boxing.cart.unit.information;
 
 import java.util.Calendar;
 
-public class Discount extends Information {
+public class Discount implements Information {
 
     private Calendar discountCalendar;
     private double discountRate;
