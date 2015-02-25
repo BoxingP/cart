@@ -56,7 +56,7 @@ public class CouponCalculatorTest {
     public void shouldTotalPrice1000CouponEmpty_return_1000() throws ParseException {
 
         when(mockInputInformation.getSettlementCalendar()).thenReturn(calendar14Mar2);
-        when(mockInputInformation.getCouponList()).thenReturn(null);
+        when(mockInputInformation.getCouponList()).thenReturn(new ArrayList<Coupon>());
 
         assertThat(couponCalculator.calculate(new BigDecimal("1000"), mockInputInformation), is(new BigDecimal("1000")));
     }

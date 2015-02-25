@@ -24,7 +24,7 @@ public class CouponCalculator implements Calculator {
     }
 
     private boolean isListValid(List<Coupon> couponList) {
-        return couponList != null && !couponList.isEmpty();
+        return !couponList.isEmpty();
     }
 
     private BigDecimal subtractCouponPrice(BigDecimal totalPrice, List<Coupon> couponList, Calendar settlementCalendar) {

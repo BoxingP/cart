@@ -63,7 +63,7 @@ public class DiscountCalculatorTest {
     @Test
     public void shouldDiscountEmpty_return_totalPriceWithoutDiscounted() throws ParseException {
 
-        when(mockInputInformation.getDiscountList()).thenReturn(null);
+        when(mockInputInformation.getDiscountList()).thenReturn(new ArrayList<Discount>());
         when(mockInputInformation.getItemList()).thenReturn(this.mockItemList);
         when(mockInputInformation.getSettlementCalendar()).thenReturn(calendar14Jan1);
 

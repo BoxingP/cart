@@ -39,7 +39,7 @@ public class DiscountCalculator implements Calculator {
     }
 
     private boolean isListValid(List<Discount> discountList) {
-        return discountList != null && !discountList.isEmpty();
+        return !discountList.isEmpty();
     }
 
     private void abstractDiscountInformation(List<Discount> discountList, Calendar settlementCalendar, Map<ItemType, BigDecimal> discountMap) {
