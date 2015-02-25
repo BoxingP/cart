@@ -11,17 +11,28 @@ import java.util.Calendar;
 import java.util.List;
 
 public class InputInformation {
-
+    
     private List<Discount> discountList;
     private List<Item> itemList;
     private Calendar settlementCalendar;
     private List<Coupon> couponList;
+    private static final List<Parser> parsers = generateParsers();
 
     public InputInformation(List<Discount> discountList, List<Item> itemList, Calendar settlementCalendar, List<Coupon> couponList) throws ParseException {
         this.discountList = discountList;
         this.itemList = itemList;
         this.settlementCalendar = settlementCalendar;
         this.couponList = couponList;
+    }
+
+    private static List<Parser> generateParsers() {
+        List<Parser> parsers = new ArrayList<Parser>();
+        parsers.add(new DiscountStringParser());
+        parsers.add(new ItemStringParser());
+        parsers.add(new CalendarStringParser());
+        parsers.add(new CouponStringParser());
+        
+        return parsers;
     }
 
     public List<Discount> getDiscountList() {
@@ -42,12 +53,6 @@ public class InputInformation {
 
     public static InputInformation convertStringToInputInformation(String input) throws ParseException {
         InputInformation inputInformation = new InputInformation(new ArrayList<Discount>(), new ArrayList<Item>(), null, new ArrayList<Coupon>());
-
-        List<Parser> parsers = new ArrayList<Parser>();
-        parsers.add(new DiscountStringParser());
-        parsers.add(new ItemStringParser());
-        parsers.add(new CalendarStringParser());
-        parsers.add(new CouponStringParser());
 
         String[] information = input.split("\\n");
         for (String string : information) {

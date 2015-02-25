@@ -9,13 +9,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TotalPriceCalculator {
-    public BigDecimal calculateTotalPrice(InputInformation inputInformation) {
-        BigDecimal totalPrice = new BigDecimal("0");
-
+    private static final List<Calculator> calculators = generateCalculators();
+    
+    private static List<Calculator> generateCalculators() {
         List<Calculator> calculators = new ArrayList<Calculator>();
         calculators.add(new DiscountCalculator());
         calculators.add(new CouponCalculator());
-        
+        return calculators;
+    }
+
+    public BigDecimal calculateTotalPrice(InputInformation inputInformation) {
+        BigDecimal totalPrice = new BigDecimal("0");
+
         for (Calculator calculator: calculators) {
             totalPrice = calculator.calculate(totalPrice, inputInformation);
         }
