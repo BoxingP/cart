@@ -26,6 +26,8 @@ public class DiscountCalculatorTest {
     Calendar calendar14Jan1;
     Calendar calendar14Jan2;
     InputInformation mockInputInformation;
+    List<Item> mockItemList;
+    List<Discount> mockDiscountList;
 
     @Before
     public void initObject() throws ParseException {
@@ -40,18 +42,19 @@ public class DiscountCalculatorTest {
         calendar14Jan2.setTime(date14Jan2);
 
         mockInputInformation = mock(InputInformation.class);
+
+        mockItemList = new ArrayList<Item>();
+        mockItemList.add(new Item(3, "蔬菜", new BigDecimal("5.98")));
+
+        mockDiscountList = new ArrayList<Discount>();
+        mockDiscountList.add(new Discount(calendar14Jan1, new BigDecimal("0.7"), ItemType.FOOD));
     }
 
     @Test
     public void shouldDiscountValid_return_totalPriceAfterDiscounted() {
-        List<Item> mockItemList = new ArrayList<Item>();
-        mockItemList.add(new Item(3, "蔬菜", new BigDecimal("5.98")));
 
-        List<Discount> mockDiscountList = new ArrayList<Discount>();
-        mockDiscountList.add(new Discount(calendar14Jan1, new BigDecimal("0.7"), ItemType.FOOD));
-
-        when(mockInputInformation.getDiscountList()).thenReturn(mockDiscountList);
-        when(mockInputInformation.getItemList()).thenReturn(mockItemList);
+        when(mockInputInformation.getDiscountList()).thenReturn(this.mockDiscountList);
+        when(mockInputInformation.getItemList()).thenReturn(this.mockItemList);
         when(mockInputInformation.getSettlementCalendar()).thenReturn(calendar14Jan1);
 
         assertThat(discountCalculator.calculate(new BigDecimal("0"), mockInputInformation), is(new BigDecimal("12.558")));
@@ -59,11 +62,9 @@ public class DiscountCalculatorTest {
 
     @Test
     public void shouldDiscountEmpty_return_totalPriceWithoutDiscounted() throws ParseException {
-        List<Item> mockItemList = new ArrayList<Item>();
-        mockItemList.add(new Item(3, "蔬菜", new BigDecimal("5.98")));
 
         when(mockInputInformation.getDiscountList()).thenReturn(null);
-        when(mockInputInformation.getItemList()).thenReturn(mockItemList);
+        when(mockInputInformation.getItemList()).thenReturn(this.mockItemList);
         when(mockInputInformation.getSettlementCalendar()).thenReturn(calendar14Jan1);
 
         assertThat(discountCalculator.calculate(new BigDecimal("0"), mockInputInformation), is(new BigDecimal("17.94")));
@@ -71,14 +72,12 @@ public class DiscountCalculatorTest {
 
     @Test
     public void shouldDiscountIsNotToday_return_totalPriceWithoutDiscounted() throws ParseException {
-        List<Item> mockItemList = new ArrayList<Item>();
-        mockItemList.add(new Item(3, "蔬菜", new BigDecimal("5.98")));
 
         List<Discount> mockDiscountList = new ArrayList<Discount>();
         mockDiscountList.add(new Discount(calendar14Jan2, new BigDecimal("0.7"), ItemType.FOOD));
 
         when(mockInputInformation.getDiscountList()).thenReturn(mockDiscountList);
-        when(mockInputInformation.getItemList()).thenReturn(mockItemList);
+        when(mockInputInformation.getItemList()).thenReturn(this.mockItemList);
         when(mockInputInformation.getSettlementCalendar()).thenReturn(calendar14Jan1);
 
         assertThat(discountCalculator.calculate(new BigDecimal("0"), mockInputInformation), is(new BigDecimal("17.94")));
@@ -86,14 +85,11 @@ public class DiscountCalculatorTest {
 
     @Test
     public void shouldDiscountIsOtherItemType_return_totalPriceWithoutDiscounted() throws ParseException {
-        List<Item> mockItemList = new ArrayList<Item>();
-        mockItemList.add(new Item(3, "蔬菜", new BigDecimal("5.98")));
-
         List<Discount> mockDiscountList = new ArrayList<Discount>();
         mockDiscountList.add(new Discount(calendar14Jan1, new BigDecimal("0.7"), ItemType.ELECTRONICS));
 
         when(mockInputInformation.getDiscountList()).thenReturn(mockDiscountList);
-        when(mockInputInformation.getItemList()).thenReturn(mockItemList);
+        when(mockInputInformation.getItemList()).thenReturn(this.mockItemList);
         when(mockInputInformation.getSettlementCalendar()).thenReturn(calendar14Jan1);
 
         assertThat(discountCalculator.calculate(new BigDecimal("0"), mockInputInformation), is(new BigDecimal("17.94")));
@@ -105,10 +101,7 @@ public class DiscountCalculatorTest {
         mockItemList.add(new Item(3, "蔬菜", new BigDecimal("5.98")));
         mockItemList.add(new Item(8, "餐巾纸", new BigDecimal("3.20")));
 
-        List<Discount> mockDiscountList = new ArrayList<Discount>();
-        mockDiscountList.add(new Discount(calendar14Jan1, new BigDecimal("0.7"), ItemType.FOOD));
-
-        when(mockInputInformation.getDiscountList()).thenReturn(mockDiscountList);
+        when(mockInputInformation.getDiscountList()).thenReturn(this.mockDiscountList);
         when(mockInputInformation.getItemList()).thenReturn(mockItemList);
         when(mockInputInformation.getSettlementCalendar()).thenReturn(calendar14Jan1);
 

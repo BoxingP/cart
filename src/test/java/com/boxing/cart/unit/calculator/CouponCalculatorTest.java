@@ -23,6 +23,7 @@ public class CouponCalculatorTest {
     Calendar calendar14Mar1;
     Calendar calendar14Mar2;
     InputInformation mockInputInformation;
+    List<Coupon> mockCouponList;
 
     @Before
     public void initObject() throws ParseException {
@@ -37,15 +38,16 @@ public class CouponCalculatorTest {
         calendar14Mar2.setTime(date14Mar2);
 
         mockInputInformation = mock(InputInformation.class);
+
+        mockCouponList = new ArrayList<Coupon>();
+        mockCouponList.add(new Coupon(calendar14Mar2, new BigDecimal("1000"), new BigDecimal("200")));
     }
 
     @Test
     public void shouldTotalPrice1000CouponValid_return_800() throws ParseException {
-        List<Coupon> mockCouponList = new ArrayList<Coupon>();
-        mockCouponList.add(new Coupon(calendar14Mar2, new BigDecimal("1000"), new BigDecimal("200")));
 
         when(mockInputInformation.getSettlementCalendar()).thenReturn(calendar14Mar2);
-        when(mockInputInformation.getCouponList()).thenReturn(mockCouponList);
+        when(mockInputInformation.getCouponList()).thenReturn(this.mockCouponList);
 
         assertThat(couponCalculator.calculate(new BigDecimal("1000"), mockInputInformation), is(new BigDecimal("800")));
     }
@@ -72,11 +74,9 @@ public class CouponCalculatorTest {
 
     @Test
     public void shouldTotalPrice900LessThan1000CouponValid_return_900() throws ParseException {
-        List<Coupon> mockCouponList = new ArrayList<Coupon>();
-        mockCouponList.add(new Coupon(calendar14Mar2, new BigDecimal("1000"), new BigDecimal("200")));
 
         when(mockInputInformation.getSettlementCalendar()).thenReturn(calendar14Mar2);
-        when(mockInputInformation.getCouponList()).thenReturn(mockCouponList);
+        when(mockInputInformation.getCouponList()).thenReturn(this.mockCouponList);
 
         assertThat(couponCalculator.calculate(new BigDecimal("900"), mockInputInformation), is(new BigDecimal("900")));
     }
