@@ -3,6 +3,7 @@ package com.boxing.cart.unit.parser;
 import com.boxing.cart.function.InputInformation;
 import com.boxing.cart.unit.information.Item;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -18,7 +19,7 @@ public class ItemStringParser implements Parser {
 
             int itemAmount = Integer.parseInt(itemInformation[0]);
             String itemName = itemInformation[1];
-            double itemUnitPrice = Double.parseDouble(itemInformation[2]);
+            BigDecimal itemUnitPrice = new BigDecimal(itemInformation[2]);
 
             itemList.add(new Item(itemAmount, itemName, itemUnitPrice));
             inputInformation.setItemList(itemList);

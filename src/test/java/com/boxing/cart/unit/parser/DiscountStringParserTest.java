@@ -8,6 +8,7 @@ import com.boxing.cart.unit.information.ItemType;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -41,7 +42,7 @@ public class DiscountStringParserTest {
         Discount actualDiscount = inputInformation.getDiscountList().get(0);
 
         assertThat(actualDiscount.getDiscountCalendar(), is(calendar2014Jan1));
-        assertThat(actualDiscount.getDiscountRate(), is(0.7));
+        assertThat(actualDiscount.getDiscountRate(), is(new BigDecimal("0.7")));
         assertThat(actualDiscount.getDiscountItemType(), is(ItemType.FOOD));
     }
 

@@ -7,6 +7,7 @@ import com.boxing.cart.unit.information.ItemType;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -94,8 +95,8 @@ public class InputInformationTest {
     @Test
     public void shouldSetInputInformationItemList_return_expectedItemList() throws ParseException {
         List<Item> expectedItemList = new ArrayList<Item>();
-        expectedItemList.add(new Item(3, "蔬菜", 5.98));
-        expectedItemList.add(new Item(8, "餐巾纸", 3.20));
+        expectedItemList.add(new Item(3, "蔬菜", new BigDecimal("5.98")));
+        expectedItemList.add(new Item(8, "餐巾纸", new BigDecimal("3.20")));
 
         InputInformation inputInformation = new InputInformation(new ArrayList<Discount>(), new ArrayList<Item>(), null, new ArrayList<Coupon>());
         inputInformation.setItemList(expectedItemList);
@@ -107,7 +108,7 @@ public class InputInformationTest {
     @Test
     public void shouldSetInputInformationDiscountList_return_expectedDiscountList() throws ParseException {
         List<Discount> expectedDiscountList = new ArrayList<Discount>();
-        expectedDiscountList.add(new Discount(calendar2014Jan1, 0.7, ItemType.FOOD));
+        expectedDiscountList.add(new Discount(calendar2014Jan1, new BigDecimal("0.7"), ItemType.FOOD));
 
         InputInformation inputInformation = new InputInformation(new ArrayList<Discount>(), new ArrayList<Item>(), null, new ArrayList<Coupon>());
         inputInformation.setDiscountList(expectedDiscountList);
@@ -119,7 +120,7 @@ public class InputInformationTest {
     @Test
     public void shouldSetInputInformationCouponList_return_expectedCouponList() throws ParseException {
         List<Coupon> expectedCouponList = new ArrayList<Coupon>();
-        expectedCouponList.add(new Coupon(calendar2014Mar2, 40d, 5d));
+        expectedCouponList.add(new Coupon(calendar2014Mar2, new BigDecimal("40"), new BigDecimal("5")));
 
         InputInformation inputInformation = new InputInformation(new ArrayList<Discount>(), new ArrayList<Item>(), null, new ArrayList<Coupon>());
         inputInformation.setCouponList(expectedCouponList);
@@ -140,22 +141,22 @@ public class InputInformationTest {
         assertThat(itemList.get(0).getItemAmount(), is(3));
         assertThat(itemList.get(0).getItemName(), is("蔬菜"));
         assertThat(itemList.get(0).getItemType(), is(ItemType.FOOD));
-        assertThat(itemList.get(0).getItemUnitPrice(), is(5.98));
+        assertThat(itemList.get(0).getItemUnitPrice(), is(new BigDecimal("5.98")));
         assertThat(itemList.get(1).getItemAmount(), is(8));
         assertThat(itemList.get(1).getItemName(), is("餐巾纸"));
         assertThat(itemList.get(1).getItemType(), is(ItemType.DAILY_NECESSITIES));
-        assertThat(itemList.get(1).getItemUnitPrice(), is(3.20));
+        assertThat(itemList.get(1).getItemUnitPrice(), is(new BigDecimal("3.20")));
     }
 
     private void assertDiscountListIsExpected(List<Discount> discountList) {
         assertThat(discountList.get(0).getDiscountCalendar(), is(calendar2014Jan1));
-        assertThat(discountList.get(0).getDiscountRate(), is(0.7));
+        assertThat(discountList.get(0).getDiscountRate(), is(new BigDecimal("0.7")));
         assertThat(discountList.get(0).getDiscountItemType(), is(ItemType.FOOD));
     }
 
     private void assertCouponListIsExpected(List<Coupon> couponList) {
         assertThat(couponList.get(0).getCouponCalendar(), is(calendar2014Mar2));
-        assertThat(couponList.get(0).getValidTotalPrice(), is(40d));
-        assertThat(couponList.get(0).getCouponPrice(), is(5d));
+        assertThat(couponList.get(0).getValidTotalPrice(), is(new BigDecimal("40")));
+        assertThat(couponList.get(0).getCouponPrice(), is(new BigDecimal("5")));
     }
 }

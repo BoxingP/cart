@@ -1,14 +1,15 @@
 package com.boxing.cart.unit.information;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 
 public class Item implements Information {
     private int itemAmount;
     private String itemName;
-    private double itemUnitPrice;
+    private BigDecimal itemUnitPrice;
     private ItemType itemType;
 
-    public Item(int itemAmount, String itemName, double itemUnitPrice) {
+    public Item(int itemAmount, String itemName, BigDecimal itemUnitPrice) {
         this.itemAmount = itemAmount;
         this.itemName = itemName;
         this.itemUnitPrice = itemUnitPrice;
@@ -23,7 +24,7 @@ public class Item implements Information {
         return itemName;
     }
 
-    public double getItemUnitPrice() {
+    public BigDecimal getItemUnitPrice() {
         return itemUnitPrice;
     }
 

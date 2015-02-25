@@ -4,9 +4,11 @@ import com.boxing.cart.unit.calculator.Calculator;
 import com.boxing.cart.unit.calculator.CouponCalculator;
 import com.boxing.cart.unit.calculator.DiscountCalculator;
 
+import java.math.BigDecimal;
+
 public class TotalPriceCalculator {
-    public double calculateTotalPrice(InputInformation inputInformation) {
-        double totalPrice = 0d;
+    public BigDecimal calculateTotalPrice(InputInformation inputInformation) {
+        BigDecimal totalPrice = new BigDecimal("0");
 
         Calculator discountCalculator = new DiscountCalculator();
         totalPrice = discountCalculator.calculate(totalPrice, inputInformation);

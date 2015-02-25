@@ -8,6 +8,7 @@ import com.boxing.cart.unit.information.ItemType;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.ArrayList;
 
@@ -34,7 +35,7 @@ public class ItemStringParserTest {
 
         assertThat(actualItem.getItemAmount(), is(3));
         assertThat(actualItem.getItemName(), is("蔬菜"));
-        assertThat(actualItem.getItemUnitPrice(), is(5.98));
+        assertThat(actualItem.getItemUnitPrice(), is(new BigDecimal("5.98")));
         assertThat(actualItem.getItemType(), is(ItemType.FOOD));
     }
 

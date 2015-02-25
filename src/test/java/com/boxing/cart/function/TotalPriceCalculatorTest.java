@@ -7,6 +7,7 @@ import com.boxing.cart.unit.information.ItemType;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -32,25 +33,25 @@ public class TotalPriceCalculatorTest {
         InputInformation mockInputInformation = mock(InputInformation.class);
 
         List<Item> mockItemList = new ArrayList<Item>();
-        mockItemList.add(new Item(3, "蔬菜", 5.98));
-        mockItemList.add(new Item(8, "餐巾纸", 3.20));
+        mockItemList.add(new Item(3, "蔬菜", new BigDecimal("5.98")));
+        mockItemList.add(new Item(8, "餐巾纸", new BigDecimal("3.20")));
 
         Date mockSettlementDate = new SimpleDateFormat("yyyy.MM.dd").parse("2014.01.01");
         Calendar mockSettlementCalendar = Calendar.getInstance();
         mockSettlementCalendar.setTime(mockSettlementDate);
 
         List<Discount> mockDiscountList = new ArrayList<Discount>();
-        mockDiscountList.add(new Discount(mockSettlementCalendar, 0.7, ItemType.FOOD));
+        mockDiscountList.add(new Discount(mockSettlementCalendar, new BigDecimal("0.7"), ItemType.FOOD));
 
 
         List<Coupon> mockCouponList = new ArrayList<Coupon>();
-        mockCouponList.add(new Coupon(mockSettlementCalendar, 40d, 5d));
+        mockCouponList.add(new Coupon(mockSettlementCalendar, new BigDecimal("40"), new BigDecimal("5")));
 
         when(mockInputInformation.getDiscountList()).thenReturn(mockDiscountList);
         when(mockInputInformation.getItemList()).thenReturn(mockItemList);
         when(mockInputInformation.getSettlementCalendar()).thenReturn(mockSettlementCalendar);
         when(mockInputInformation.getCouponList()).thenReturn(mockCouponList);
 
-        assertThat(totalPriceCalculator.calculateTotalPrice(mockInputInformation), is(38.158));
+        assertThat(totalPriceCalculator.calculateTotalPrice(mockInputInformation), is(new BigDecimal("38.158")));
     }
 }

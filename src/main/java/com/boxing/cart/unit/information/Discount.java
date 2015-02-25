@@ -1,14 +1,15 @@
 package com.boxing.cart.unit.information;
 
+import java.math.BigDecimal;
 import java.util.Calendar;
 
 public class Discount implements Information {
 
     private Calendar discountCalendar;
-    private double discountRate;
+    private BigDecimal discountRate;
     private ItemType discountItemType;
 
-    public Discount(Calendar discountCalendar, double discountRate, ItemType itemType) {
+    public Discount(Calendar discountCalendar, BigDecimal discountRate, ItemType itemType) {
         this.discountCalendar = discountCalendar;
         this.discountRate = discountRate;
         this.discountItemType = itemType;
@@ -18,7 +19,7 @@ public class Discount implements Information {
         return discountCalendar;
     }
 
-    public double getDiscountRate() {
+    public BigDecimal getDiscountRate() {
         return discountRate;
     }
 

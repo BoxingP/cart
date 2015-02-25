@@ -3,13 +3,15 @@ package com.boxing.cart.unit.calculator;
 import com.boxing.cart.function.InputInformation;
 import com.boxing.cart.unit.information.Coupon;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Calendar;
 import java.util.List;
 
 public class CouponCalculator implements Calculator {
 
     @Override
-    public double calculate(double totalPrice, InputInformation inputInformation) {
+    public BigDecimal calculate(BigDecimal totalPrice, InputInformation inputInformation) {
 
         List<Coupon> couponList = inputInformation.getCouponList();
         Calendar settlementCalendar = inputInformation.getSettlementCalendar();
@@ -25,16 +27,18 @@ public class CouponCalculator implements Calculator {
         return couponList != null && !couponList.isEmpty();
     }
 
-    private double subtractCouponPrice(double totalPrice, List<Coupon> couponList, Calendar settlementCalendar) {
+    private BigDecimal subtractCouponPrice(BigDecimal totalPrice, List<Coupon> couponList, Calendar settlementCalendar) {
+
         for (Coupon coupon : couponList) {
             if (isCouponValid(totalPrice, coupon, settlementCalendar)) {
-                totalPrice -= coupon.getCouponPrice();
+                totalPrice = totalPrice.subtract(coupon.getCouponPrice());
             }
         }
+
         return totalPrice;
     }
 
-    private boolean isCouponValid(double totalPrice, Coupon coupon, Calendar settlementCalendar) {
-        return (!settlementCalendar.after(coupon.getCouponCalendar())) && (totalPrice >= coupon.getValidTotalPrice());
+    private boolean isCouponValid(BigDecimal totalPrice, Coupon coupon, Calendar settlementCalendar) {
+        return (!settlementCalendar.after(coupon.getCouponCalendar())) && (totalPrice.compareTo(coupon.getValidTotalPrice()) >= 0);
     }
 }

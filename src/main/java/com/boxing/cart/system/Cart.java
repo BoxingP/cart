@@ -3,7 +3,8 @@ package com.boxing.cart.system;
 import com.boxing.cart.function.InputInformation;
 import com.boxing.cart.function.TotalPriceCalculator;
 
-import java.text.DecimalFormat;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.ParseException;
 
 public class Cart {
@@ -22,19 +23,20 @@ public class Cart {
     }
 
     public String showTotalPrice(String input) throws ParseException {
-        double totalPrice = 0d;
+        BigDecimal totalPrice = new BigDecimal("0");
 
-        if (input.equals("")) {
-            DecimalFormat totalPriceFormat = new DecimalFormat("0.00");
-            return totalPriceFormat.format(totalPrice);
+        if (isInputValid(input)) {
+            InputInformation inputInformation = InputInformation.convertStringToInputInformation(input);
+
+            TotalPriceCalculator totalPriceCalculator = new TotalPriceCalculator();
+            totalPrice = totalPrice.add(totalPriceCalculator.calculateTotalPrice(inputInformation));
         }
 
-        InputInformation inputInformation = InputInformation.convertStringToInputInformation(input);
-
-        TotalPriceCalculator totalPriceCalculator = new TotalPriceCalculator();
-        totalPrice += totalPriceCalculator.calculateTotalPrice(inputInformation);
-
-        DecimalFormat totalPriceFormat = new DecimalFormat("0.00");
-        return totalPriceFormat.format(totalPrice);
+        return totalPrice.setScale(2, RoundingMode.HALF_UP).toString();
     }
+
+    private boolean isInputValid(String input) {
+        return input != null && !input.equals("");
+    }
+
 }

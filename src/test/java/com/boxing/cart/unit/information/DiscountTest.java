@@ -2,6 +2,7 @@ package com.boxing.cart.unit.information;
 
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -18,10 +19,10 @@ public class DiscountTest {
         Calendar calendar2013Nov11 = Calendar.getInstance();
         calendar2013Nov11.setTime(date2013Nov11);
 
-        Discount discount = new Discount(calendar2013Nov11, 0.7, ItemType.ELECTRONICS);
+        Discount discount = new Discount(calendar2013Nov11, new BigDecimal("0.7"), ItemType.ELECTRONICS);
 
         assertThat(discount.getDiscountCalendar(), is(calendar2013Nov11));
-        assertThat(discount.getDiscountRate(), is(0.7));
+        assertThat(discount.getDiscountRate(), is(new BigDecimal("0.7")));
         assertThat(discount.getDiscountItemType(), is(ItemType.ELECTRONICS));
     }
 }

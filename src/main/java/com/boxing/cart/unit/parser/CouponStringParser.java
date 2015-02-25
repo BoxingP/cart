@@ -3,6 +3,7 @@ package com.boxing.cart.unit.parser;
 import com.boxing.cart.function.InputInformation;
 import com.boxing.cart.unit.information.Coupon;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.List;
@@ -17,8 +18,8 @@ public class CouponStringParser implements Parser {
             String[] couponInformation = input.split(" ");
 
             Calendar couponCalendar = CalendarStringParser.extractCalendar(couponInformation[0]);
-            double validTotalPrice = Double.parseDouble(couponInformation[1]);
-            double couponPrice = Double.parseDouble(couponInformation[2]);
+            BigDecimal validTotalPrice = new BigDecimal(couponInformation[1]);
+            BigDecimal couponPrice = new BigDecimal(couponInformation[2]);
 
             couponList.add(new Coupon(couponCalendar, validTotalPrice, couponPrice));
             inputInformation.setCouponList(couponList);

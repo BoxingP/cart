@@ -4,6 +4,7 @@ import com.boxing.cart.function.InputInformation;
 import com.boxing.cart.unit.information.Discount;
 import com.boxing.cart.unit.information.ItemType;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.List;
@@ -18,7 +19,7 @@ public class DiscountStringParser implements Parser {
             String[] discountInformationElements = input.split(" \\| ");
 
             Calendar discountCalendar = CalendarStringParser.extractCalendar(discountInformationElements[0]);
-            double discountRate = Double.parseDouble(discountInformationElements[1]);
+            BigDecimal discountRate = new BigDecimal(discountInformationElements[1]);
             ItemType discountItemType = ItemType.abstractItemType(discountInformationElements[2]);
 
             discountList.add(new Discount(discountCalendar, discountRate, discountItemType));

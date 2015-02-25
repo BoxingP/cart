@@ -7,6 +7,7 @@ import com.boxing.cart.unit.information.ItemType;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -44,73 +45,73 @@ public class DiscountCalculatorTest {
     @Test
     public void shouldDiscountValid_return_totalPriceAfterDiscounted() {
         List<Item> mockItemList = new ArrayList<Item>();
-        mockItemList.add(new Item(3, "蔬菜", 5.98));
+        mockItemList.add(new Item(3, "蔬菜", new BigDecimal("5.98")));
 
         List<Discount> mockDiscountList = new ArrayList<Discount>();
-        mockDiscountList.add(new Discount(calendar14Jan1, 0.7, ItemType.FOOD));
+        mockDiscountList.add(new Discount(calendar14Jan1, new BigDecimal("0.7"), ItemType.FOOD));
 
         when(mockInputInformation.getDiscountList()).thenReturn(mockDiscountList);
         when(mockInputInformation.getItemList()).thenReturn(mockItemList);
         when(mockInputInformation.getSettlementCalendar()).thenReturn(calendar14Jan1);
 
-        assertThat(discountCalculator.calculate(0d, mockInputInformation), is(12.558));
+        assertThat(discountCalculator.calculate(new BigDecimal("0"), mockInputInformation), is(new BigDecimal("12.558")));
     }
 
     @Test
     public void shouldDiscountEmpty_return_totalPriceWithoutDiscounted() throws ParseException {
         List<Item> mockItemList = new ArrayList<Item>();
-        mockItemList.add(new Item(3, "蔬菜", 5.98));
+        mockItemList.add(new Item(3, "蔬菜", new BigDecimal("5.98")));
 
         when(mockInputInformation.getDiscountList()).thenReturn(null);
         when(mockInputInformation.getItemList()).thenReturn(mockItemList);
         when(mockInputInformation.getSettlementCalendar()).thenReturn(calendar14Jan1);
 
-        assertThat(discountCalculator.calculate(0d, mockInputInformation), is(17.94));
+        assertThat(discountCalculator.calculate(new BigDecimal("0"), mockInputInformation), is(new BigDecimal("17.94")));
     }
 
     @Test
     public void shouldDiscountIsNotToday_return_totalPriceWithoutDiscounted() throws ParseException {
         List<Item> mockItemList = new ArrayList<Item>();
-        mockItemList.add(new Item(3, "蔬菜", 5.98));
+        mockItemList.add(new Item(3, "蔬菜", new BigDecimal("5.98")));
 
         List<Discount> mockDiscountList = new ArrayList<Discount>();
-        mockDiscountList.add(new Discount(calendar14Jan2, 0.7, ItemType.FOOD));
+        mockDiscountList.add(new Discount(calendar14Jan2, new BigDecimal("0.7"), ItemType.FOOD));
 
         when(mockInputInformation.getDiscountList()).thenReturn(mockDiscountList);
         when(mockInputInformation.getItemList()).thenReturn(mockItemList);
         when(mockInputInformation.getSettlementCalendar()).thenReturn(calendar14Jan1);
 
-        assertThat(discountCalculator.calculate(0d, mockInputInformation), is(17.94));
+        assertThat(discountCalculator.calculate(new BigDecimal("0"), mockInputInformation), is(new BigDecimal("17.94")));
     }
 
     @Test
     public void shouldDiscountIsOtherItemType_return_totalPriceWithoutDiscounted() throws ParseException {
         List<Item> mockItemList = new ArrayList<Item>();
-        mockItemList.add(new Item(3, "蔬菜", 5.98));
+        mockItemList.add(new Item(3, "蔬菜", new BigDecimal("5.98")));
 
         List<Discount> mockDiscountList = new ArrayList<Discount>();
-        mockDiscountList.add(new Discount(calendar14Jan1, 0.7, ItemType.ELECTRONICS));
+        mockDiscountList.add(new Discount(calendar14Jan1, new BigDecimal("0.7"), ItemType.ELECTRONICS));
 
         when(mockInputInformation.getDiscountList()).thenReturn(mockDiscountList);
         when(mockInputInformation.getItemList()).thenReturn(mockItemList);
         when(mockInputInformation.getSettlementCalendar()).thenReturn(calendar14Jan1);
 
-        assertThat(discountCalculator.calculate(0d, mockInputInformation), is(17.94));
+        assertThat(discountCalculator.calculate(new BigDecimal("0"), mockInputInformation), is(new BigDecimal("17.94")));
     }
 
     @Test
     public void shouldDiscountIsOneItemType_return_totalPriceWithoutDiscounted() throws ParseException {
         List<Item> mockItemList = new ArrayList<Item>();
-        mockItemList.add(new Item(3, "蔬菜", 5.98));
-        mockItemList.add(new Item(8, "餐巾纸", 3.20));
+        mockItemList.add(new Item(3, "蔬菜", new BigDecimal("5.98")));
+        mockItemList.add(new Item(8, "餐巾纸", new BigDecimal("3.20")));
 
         List<Discount> mockDiscountList = new ArrayList<Discount>();
-        mockDiscountList.add(new Discount(calendar14Jan1, 0.7, ItemType.FOOD));
+        mockDiscountList.add(new Discount(calendar14Jan1, new BigDecimal("0.7"), ItemType.FOOD));
 
         when(mockInputInformation.getDiscountList()).thenReturn(mockDiscountList);
         when(mockInputInformation.getItemList()).thenReturn(mockItemList);
         when(mockInputInformation.getSettlementCalendar()).thenReturn(calendar14Jan1);
 
-        assertThat(discountCalculator.calculate(0d, mockInputInformation), is(38.158));
+        assertThat(discountCalculator.calculate(new BigDecimal("0"), mockInputInformation), is(new BigDecimal("38.158")));
     }
 }

@@ -1,13 +1,14 @@
 package com.boxing.cart.unit.information;
 
+import java.math.BigDecimal;
 import java.util.Calendar;
 
 public class Coupon implements Information {
     private Calendar couponCalendar;
-    private double validTotalPrice;
-    private double couponPrice;
+    private BigDecimal validTotalPrice;
+    private BigDecimal couponPrice;
 
-    public Coupon(Calendar couponCalendar, double validTotalPrice, double couponPrice) {
+    public Coupon(Calendar couponCalendar, BigDecimal validTotalPrice, BigDecimal couponPrice) {
         this.couponCalendar = couponCalendar;
         this.validTotalPrice = validTotalPrice;
         this.couponPrice = couponPrice;
@@ -17,11 +18,11 @@ public class Coupon implements Information {
         return couponCalendar;
     }
 
-    public double getValidTotalPrice() {
+    public BigDecimal getValidTotalPrice() {
         return validTotalPrice;
     }
 
-    public double getCouponPrice() {
+    public BigDecimal getCouponPrice() {
         return couponPrice;
     }
 }
