@@ -51,6 +51,6 @@ public class TotalPriceCalculatorTest {
         when(mockInputInformation.getSettlementCalendar()).thenReturn(mockSettlementCalendar);
         when(mockInputInformation.getCouponList()).thenReturn(mockCouponList);
 
-        assertThat(totalPriceCalculator.calculateTotalPrice(mockInputInformation), is(38.16));
+        assertThat(totalPriceCalculator.calculateTotalPrice(mockInputInformation), is(38.158));
     }
 }

@@ -53,7 +53,7 @@ public class DiscountCalculatorTest {
         when(mockInputInformation.getItemList()).thenReturn(mockItemList);
         when(mockInputInformation.getSettlementCalendar()).thenReturn(calendar14Jan1);
 
-        assertThat(discountCalculator.calculate(0d, mockInputInformation), is(12.56));
+        assertThat(discountCalculator.calculate(0d, mockInputInformation), is(12.558));
     }
 
     @Test
@@ -111,6 +111,6 @@ public class DiscountCalculatorTest {
         when(mockInputInformation.getItemList()).thenReturn(mockItemList);
         when(mockInputInformation.getSettlementCalendar()).thenReturn(calendar14Jan1);
 
-        assertThat(discountCalculator.calculate(0d, mockInputInformation), is(38.16));
+        assertThat(discountCalculator.calculate(0d, mockInputInformation), is(38.158));
     }
 }

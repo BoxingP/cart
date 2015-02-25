@@ -5,7 +5,6 @@ import com.boxing.cart.unit.information.Discount;
 import com.boxing.cart.unit.information.Item;
 import com.boxing.cart.unit.information.ItemType;
 
-import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -31,8 +30,7 @@ public class DiscountCalculator extends Calculator {
             totalPrice += item.getItemUnitPrice() * item.getItemAmount() * itemDiscountRate;
         }
 
-        DecimalFormat totalPriceFormat = new DecimalFormat("0.00");
-        return Double.parseDouble(totalPriceFormat.format(totalPrice));
+        return totalPrice;
     }
 
     private boolean isListValid(List<Discount> discountList) {
