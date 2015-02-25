@@ -22,9 +22,7 @@ public class DiscountCalculator implements Calculator {
 
         Map<ItemType, BigDecimal> discountMap = new HashMap<ItemType, BigDecimal>();
 
-        if (isListValid(discountList)) {
-            abstractDiscountInformation(discountList, settlementCalendar, discountMap);
-        }
+        abstractDiscountInformation(discountList, settlementCalendar, discountMap);
 
         for (Item item : itemList) {
             BigDecimal itemDiscountRate = discountMap.get(item.getItemType()) != null ? discountMap.get(item.getItemType()) : new BigDecimal("1");
@@ -36,10 +34,6 @@ public class DiscountCalculator implements Calculator {
         }
 
         return totalPrice;
-    }
-
-    private boolean isListValid(List<Discount> discountList) {
-        return !discountList.isEmpty();
     }
 
     private void abstractDiscountInformation(List<Discount> discountList, Calendar settlementCalendar, Map<ItemType, BigDecimal> discountMap) {

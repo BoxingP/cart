@@ -16,15 +16,9 @@ public class CouponCalculator implements Calculator {
         List<Coupon> couponList = inputInformation.getCouponList();
         Calendar settlementCalendar = inputInformation.getSettlementCalendar();
 
-        if (isListValid(couponList)) {
-            totalPrice = subtractCouponPrice(totalPrice, couponList, settlementCalendar);
-        }
+        totalPrice = subtractCouponPrice(totalPrice, couponList, settlementCalendar);
 
         return totalPrice;
-    }
-
-    private boolean isListValid(List<Coupon> couponList) {
-        return !couponList.isEmpty();
     }
 
     private BigDecimal subtractCouponPrice(BigDecimal totalPrice, List<Coupon> couponList, Calendar settlementCalendar) {
