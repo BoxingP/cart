@@ -25,7 +25,7 @@ public class DiscountCalculator implements Calculator {
         abstractDiscountInformation(discountList, settlementCalendar, discountMap);
 
         for (Item item : itemList) {
-            BigDecimal itemDiscountRate = discountMap.get(item.getItemType()) != null ? discountMap.get(item.getItemType()) : new BigDecimal("1");
+            BigDecimal itemDiscountRate = discountMap.containsKey(item.getItemType()) ? discountMap.get(item.getItemType()) : new BigDecimal("1");
 
             BigDecimal itemAmount = new BigDecimal(item.getItemAmount());
             BigDecimal itemPrice = item.getItemUnitPrice().multiply(itemAmount).multiply(itemDiscountRate);
